@@ -130,13 +130,58 @@
 <span><span class="co">#&gt; - Estimand (r(Psi_1, Psi_0)) estimate (SE): 2.09 (0.0921)</span></span></code></pre></div>
 </div>
 <div class="section level3">
+<h3 id="structure-of-rctglm-and-methods-for-extracting-entities">Structure of <code>rctglm</code> and methods for extracting entities<a class="anchor" aria-label="anchor" href="#structure-of-rctglm-and-methods-for-extracting-entities"></a>
+</h3>
+<p>The <code>print</code> method for the <code>rctglm</code> class specifies the way to print such an object as seen above. Behind the S3 class of <code>rctglm</code> it is a list with</p>
+<ul>
+<li>Estimand related information
+<ul>
+<li>Value of plug-in estimation of estimand
+<ul>
+<li>Accessible through <code>ate$estimand</code> or using method <code>estimand(ate)</code>
+</li>
+</ul>
+</li>
+<li>Variance and standard error (SE) of estimand</li>
+<li>Accessible through <code>ate$var_estimand</code> and <code>ate$se_estimand</code> as well as the SE with method <code>se_estimand(ate)</code>
+</li>
+<li>Counterfactual predictions (for each observation) and counterfactual means for both groups
+<ul>
+<li>Accessible through <code>ate$counterfactual_mean&lt;0/1&gt;</code> and <code>ate$counterfactual_pred&lt;0/1&gt;</code>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Information on the underlying <code>glm</code> fit
+<ul>
+<li>Entire <code>glm</code> object available through <code>ate$glm</code>
+</li>
+<li>Methods <code>coef</code> and <code>summary</code> exist for the <code>rctglm</code> class, which uses the corresponding methods on the <code>glm</code> object contained within <code>rctglm</code>
+</li>
+</ul>
+</li>
+</ul>
+<p>Thus, methods available are:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/rctglm_methods.html">estimand</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 2.091095</span></span>
+<span><span class="fu"><a href="reference/rctglm_methods.html">se_estimand</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.09208528</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span>
+<span><span class="co">#&gt; (Intercept)           A           W         A:W </span></span>
+<span><span class="co">#&gt;  2.77585401  2.09122279  0.02364106  0.04961895</span></span>
+<span><span class="co"># summary(ate) # Not printing to avoid long output in formatted output</span></span></code></pre></div>
+<p>See more info in the documentation page <code><a href="reference/rctglm_methods.html">rctglm_methods()</a></code>.</p>
+</div>
+<div class="section level3">
 <h3 id="using-prognostic-covariate-adjustment">Using prognostic covariate adjustment<a class="anchor" aria-label="anchor" href="#using-prognostic-covariate-adjustment"></a>
 </h3>
 <p>The <code><a href="reference/rctglm_with_prognosticscore.html">rctglm_with_prognosticscore()</a></code> function uses the <code><a href="reference/fit_best_learner.html">fit_best_learner()</a></code> function to fit a prognostic model to historical data and then uses the prognostic model to predict</p>
 <p>for all observations in the current data set. These <em>prognostic scores</em> are then used as a covariate in the GLM when running <code><a href="reference/rctglm.html">rctglm()</a></code>.</p>
 <p>Allowing the use of complex non-linear models to create such a prognostic score allows utilising information from potentially many variables, “catching” non-linear relationships and then using all this information in the GLM model using a single covariate adjustment.</p>
 <p>We simulate some historical data to showcase the use of this function as well:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat_notreat</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/glm_data.html">glm_data</a></span><span class="op">(</span></span>
 <span>  <span class="va">b0</span><span class="op">+</span><span class="va">b1</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="va">W</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>,</span>
 <span>  W <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">n</span>, min <span class="op">=</span> <span class="op">-</span><span class="fl">2</span>, max <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
@@ -154,7 +199,7 @@
 <li>(Optionally) number folds in cross validation and a list of learners for fitting the best learner</li>
 </ul>
 <p>Thus, a simple call which estimates the average treatment effect, adjusting for a prognostic score, is seen below:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ate_prog</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rctglm_with_prognosticscore.html">rctglm_with_prognosticscore</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">Y</span> <span class="op">~</span> <span class="va">A</span> <span class="op">*</span> <span class="va">W</span>,</span>
 <span>  group_indicator <span class="op">=</span> <span class="va">A</span>,</span>
@@ -162,7 +207,7 @@
 <span>  family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">gaussian</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span>, <span class="co"># Default value</span></span>
 <span>  data_hist <span class="op">=</span> <span class="va">dat_notreat</span><span class="op">)</span></span></code></pre></div>
 <p>Quick results of the fit can be seen by printing the object:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ate_prog</span></span>
 <span><span class="co">#&gt; Object of class 'rctglm'</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -174,6 +219,26 @@
 <span><span class="co">#&gt; - Estimand function r: psi1 - psi0</span></span>
 <span><span class="co">#&gt; - Estimand (r(Psi_1, Psi_0)) estimate (SE): 1.99 (0.0641)</span></span></code></pre></div>
 <p>It’s evident that in this case where there is a non-linear relationship between the covariate we observe and the response, adjusting for the prognostic score reduces the standard error of our estimand approximation by quite a bit.</p>
+<div class="section level4">
+<h4 id="investigating-the-prognostic-model">Investigating the prognostic model<a class="anchor" aria-label="anchor" href="#investigating-the-prognostic-model"></a>
+</h4>
+<p>Information on the prognostic model is available in the list element <code>prognostic_info</code> of the resulting object. This contains</p>
+<ul>
+<li>The fitted prognostic model as a <code>workflow</code>
+<ul>
+<li>Accessible through <code>ate$prognostic_info$model_fit</code> or with method <code>prog_model(ate)</code>
+</li>
+</ul>
+</li>
+<li>A list of the learners used for fitting the model using [fit_best_learner()]
+<ul>
+<li>Accessible through <code>ate$prognostic_info$learners</code>
+</li>
+</ul>
+</li>
+<li>The number of folds used for cross validation (<code>cv_folds</code>) and the historical data used for fitting the model</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
