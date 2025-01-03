@@ -46,13 +46,16 @@ details for more information on each method.</p>
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for class 'rctglm'</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fl">3</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fl">3L</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"digits"</span><span class="op">)</span> <span class="op">-</span> <span class="fl">3L</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'rctglm'</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'rctglm'</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for class 'summary.rctglm'</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fl">3L</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"digits"</span><span class="op">)</span> <span class="op">-</span> <span class="fl">3L</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">estimand</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span></span>
@@ -87,9 +90,11 @@ details for more information on each method.</p>
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p><code>coef</code> and <code>summary</code> just use the corresponding <code>glm</code> methods on the <code>glm</code>
-fit contained within the <code>rctglm</code> object. Thus, these functions are shortcuts
-of running <code>coef(x$glm)</code> and <code>summary(x$glm)</code>.</p>
+    <p><code>coef</code> just use the corresponding <code>glm</code> methods on the <code>glm</code>
+fit contained within the <code>rctglm</code> object. Thus, this function is a
+shortcuts to running <code>coef(x$glm)</code>.</p>
+<p><code>summary</code> summarises information related to the estimand as well as
+the underlying GLM fit.</p>
 <p><code>estimand</code> and <code>se_estimand</code> are methods for extracting the estimated
 estimand value as well as the standard error (SE) of the estimand.
 Extract the plug-in estimation of the estimand, found by using the
@@ -127,15 +132,16 @@ and <code>se_estimand</code>of an <code>rctglm</code> class object.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `estimand_fun_deriv1`</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'rctglm'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call:  rctglm(formula = Y ~ ., group_indicator = A, family = binomial, </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     data = dat_binom, estimand_fun = "ate")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> - Counterfactual control mean (Psi_0=E[Y|X, A=0]) estimate: 0.586</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> - Counterfactual control mean (Psi_1=E[Y|X, A=1]) estimate: 0.883</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> - Estimand function r: psi1 - psi0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> - Estimand (r(Psi_1, Psi_0)) estimate (SE): 0.298 (0.0685)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Counterfactual control mean (psi_0=E[Y|X, A=0]) estimate: 0.5857</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Counterfactual control mean (psi_1=E[Y|X, A=1]) estimate: 0.8833</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimand function r: psi1 - psi0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimand (r(psi_1, psi_0)) estimate (SE): 0.2976 (0.06849)</span>
 <span class="r-in"><span><span class="fu">estimand</span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.2976071</span>
 <span class="r-in"><span><span class="fu">se_estimand</span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span></span>
@@ -145,195 +151,18 @@ and <code>se_estimand</code>of an <code>rctglm</code> class object.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   0.5794888   1.3539024   2.2197052 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (function (formula, family = gaussian, data, weights, subset, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     na.action, start = NULL, etastart, mustart, offset, control = list(...), </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     model = TRUE, method = "glm.fit", x = FALSE, y = TRUE, singular.ok = TRUE, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     contrasts = NULL, ...) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     cal &lt;- match.call()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     if (is.character(family)) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         family &lt;- get(family, mode = "function", envir = parent.frame())</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     if (is.function(family)) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         family &lt;- family()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     if (is.null(family$family)) {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         print(family)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         stop("'family' not recognized")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     if (missing(data)) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         data &lt;- environment(formula)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     mf &lt;- match.call(expand.dots = FALSE)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     m &lt;- match(c("formula", "data", "subset", "weights", "na.action", </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "etastart", "mustart", "offset"), names(mf), 0L)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     mf &lt;- mf[c(1L, m)]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     mf$drop.unused.levels &lt;- TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     mf[[1L]] &lt;- quote(stats::model.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     mf &lt;- eval(mf, parent.frame())</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     if (identical(method, "model.frame")) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         return(mf)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     if (!is.character(method) &amp;&amp; !is.function(method)) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         stop("invalid 'method' argument")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     if (identical(method, "glm.fit")) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         control &lt;- do.call("glm.control", control)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     mt &lt;- attr(mf, "terms")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Y &lt;- model.response(mf, "any")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     if (length(dim(Y)) == 1L) {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         nm &lt;- rownames(Y)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         dim(Y) &lt;- NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         if (!is.null(nm)) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             names(Y) &lt;- nm</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     X &lt;- if (!is.empty.model(mt)) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         model.matrix(mt, mf, contrasts)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     else matrix(, NROW(Y), 0L)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     weights &lt;- as.vector(model.weights(mf))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     if (!is.null(weights) &amp;&amp; !is.numeric(weights)) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         stop("'weights' must be a numeric vector")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     if (!is.null(weights) &amp;&amp; any(weights &lt; 0)) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         stop("negative weights not allowed")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     offset &lt;- as.vector(model.offset(mf))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     if (!is.null(offset)) {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         if (length(offset) != NROW(Y)) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             stop(gettextf("number of offsets is %d should equal %d (number of observations)", </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 length(offset), NROW(Y)), domain = NA)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     mustart &lt;- model.extract(mf, "mustart")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     etastart &lt;- model.extract(mf, "etastart")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     fit &lt;- eval(call(if (is.function(method)) "method" else method, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         x = X, y = Y, weights = weights, start = start, etastart = etastart, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         mustart = mustart, offset = offset, family = family, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         control = control, intercept = attr(mt, "intercept") &gt; </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             0L, singular.ok = singular.ok))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     if (length(offset) &amp;&amp; attr(mt, "intercept") &gt; 0L) {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         fit2 &lt;- eval(call(if (is.function(method)) "method" else method, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             x = X[, "(Intercept)", drop = FALSE], y = Y, mustart = fit$fitted.values, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             weights = weights, offset = offset, family = family, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             control = control, intercept = TRUE))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         if (!fit2$converged) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             warning("fitting to calculate the null deviance did not converge -- increase 'maxit'?")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         fit$null.deviance &lt;- fit2$deviance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     if (model) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         fit$model &lt;- mf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     fit$na.action &lt;- attr(mf, "na.action")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     if (x) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         fit$x &lt;- X</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     if (!y) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         fit$y &lt;- NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     structure(c(fit, list(call = cal, formula = formula, terms = mt, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         data = data, offset = offset, control = control, method = method, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         contrasts = attr(X, "contrasts"), xlevels = .getXlevels(mt, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             mf))), class = c(fit$class, c("glm", "lm")))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> })(formula = Y ~ ., family = function (link = "logit") </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     linktemp &lt;- substitute(link)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     if (!is.character(linktemp)) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         linktemp &lt;- deparse(linktemp)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     okLinks &lt;- c("logit", "probit", "cloglog", "cauchit", "log")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     family &lt;- "binomial"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     if (linktemp %in% okLinks) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         stats &lt;- make.link(linktemp)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     else if (is.character(link)) {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         stats &lt;- make.link(link)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         linktemp &lt;- link</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     else {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         if (inherits(link, "link-glm")) {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             stats &lt;- link</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             if (!is.null(stats$name)) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 linktemp &lt;- stats$name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         else {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             stop(gettextf("link \"%s\" not available for %s family; available links are %s", </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 linktemp, family, paste(sQuote(okLinks), collapse = ", ")), </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 domain = NA)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     variance &lt;- function(mu) mu * (1 - mu)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     validmu &lt;- function(mu) all(is.finite(mu)) &amp;&amp; all(mu &gt; 0 &amp; </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         mu &lt; 1)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     dev.resids &lt;- function(y, mu, wt) .Call(C_binomial_dev_resids, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         y, mu, wt)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     aic &lt;- function(y, n, mu, wt, dev) {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         m &lt;- if (any(n &gt; 1)) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             n</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         else wt</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         -2 * sum(ifelse(m &gt; 0, (wt/m), 0) * dbinom(round(m * </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             y), round(m), mu, log = TRUE))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     simfun &lt;- function(object, nsim) {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         ftd &lt;- fitted(object)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         n &lt;- length(ftd)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         ntot &lt;- n * nsim</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         wts &lt;- object$prior.weights</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         if (any(wts%%1 != 0)) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             stop("cannot simulate from non-integer prior.weights")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         if (!is.null(m &lt;- object$model)) {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             y &lt;- model.response(m)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             if (is.factor(y)) {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 yy &lt;- factor(1 + rbinom(ntot, size = 1, prob = ftd), </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   labels = levels(y))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 split(yy, rep(seq_len(nsim), each = n))</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             else if (is.matrix(y) &amp;&amp; ncol(y) == 2) {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 yy &lt;- vector("list", nsim)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 for (i in seq_len(nsim)) {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   Y &lt;- rbinom(n, size = wts, prob = ftd)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   YY &lt;- cbind(Y, wts - Y)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   colnames(YY) &lt;- colnames(y)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   yy[[i]] &lt;- YY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 yy</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             else rbinom(ntot, size = wts, prob = ftd)/wts</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         else rbinom(ntot, size = wts, prob = ftd)/wts</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     structure(list(family = family, link = linktemp, linkfun = stats$linkfun, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         linkinv = stats$linkinv, variance = variance, dev.resids = dev.resids, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         aic = aic, mu.eta = stats$mu.eta, initialize = binomInitialize(family), </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         validmu = validmu, valideta = stats$valideta, simulate = simfun, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         dispersion = 1), class = "family")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> }, data = structure(list(Y = c(1L, 1L, 1L, 1L, 1L, 1L, 0L, 1L, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0L, 1L, 1L, 1L, 0L, 0L, 0L, 1L, 0L, 1L, 1L, 0L, 1L, 1L, 1L, 0L, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0L, 1L, 1L, 1L, 1L, 1L, 0L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0L, 1L, 0L, 1L, 0L, 1L, 1L, 0L, 0L, 1L, 1L, 1L, 1L, 1L, 1L, 0L, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1L, 0L, 1L, 0L, 1L, 1L, 0L, 1L, 1L, 1L, 0L, 1L, 0L, 1L, 1L, 1L, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1L, 1L, 1L, 1L, 1L, 1L, 0L, 1L, 1L, 1L, 1L, 1L, 0L, 1L, 0L, 0L, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0L, 1L, 1L, 1L, 1L, 1L, 0L, 1L, 0L, 1L, 1L, 0L), X1 = c(-0.416115003400462, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.982149585796568, 0.242180726748904, -0.937926854142168, 1.50585850038705, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -1.0658511740201, 0.162270526694493, 0.260470392136449, -1.48820199304168, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1.41518386908496, 0.562507513278876, 0.642055740996767, -0.890532644083346, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -0.116537516996528, -0.941974751187683, 1.11582791811755, 0.470135133706391, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.860612712312033, -0.0703966456448681, -0.613180213640174, -0.336714959893361, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -0.215840183865469, 0.621132286645758, -1.28402651676709, -1.30009244118702, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -0.376769461656321, 0.103748646404691, -0.703562272582238, 1.49741394047522, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -0.302826877559252, -1.37683133463726, 0.883170174632431, 0.671420279304275, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1.23002237503278, 1.64546787858301, -0.182926038663912, -1.37925781493758, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1.2506006007554, -1.87623677486404, -0.368787568278473, -2.12929730823288, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.337646026995419, -1.57457484751255, -0.196319414848903, 0.915060107809175, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1.07863653772935, 1.4528028539521, -1.6532810892254, -2.76186751764091, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.264369163537262, 1.02457159426044, -0.659185547986991, -0.386304378522672, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -0.242498949352553, 0.220593240071621, -1.48109003020768, 0.724691204470142, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -2.37751470126173, -0.0654092094259788, -0.469704813112509, -0.280516288067282, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.57483658535669, -0.205676846062025, 0.234880505242246, 0.110628320902131, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.274202232513379, 1.57491963007029, 0.567767831624168, -0.05961224987651, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -0.149587714594292, 0.266168788377474, 0.528403242689259, -0.579388093114727, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.94219937374031, -0.706361360151394, -1.27540210033337, 0.733259916535147, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -0.420207094399273, -0.255375085688641, -0.369238216504303, 1.21244832967657, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -0.44536300595727, 1.13866752147802, 0.190523483027336, -1.36639361234535, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -1.29810260115606, -2.13709831177351, -0.0962055250040968, 0.694509054682261, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -0.474591230032695, 1.76313061184639, 2.02584606385851, 0.427618808607201, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -0.56647934926807, -0.83383531146376, 0.398259154519669, -1.47453793146991, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -0.395441200477897, -0.130702467875736, -1.99949394951033), A = c(0L, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0L, 1L, 0L, 0L, 1L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 1L, 0L, 1L, 0L, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1L, 0L, 0L, 0L, 1L, 1L, 0L, 1L, 1L, 1L, 1L, 1L, 0L, 0L, 0L, 0L, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0L, 0L, 1L, 1L, 1L, 1L, 1L, 0L, 1L, 0L, 1L, 0L, 1L, 0L, 0L, 0L, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1L, 0L, 1L, 0L, 0L, 0L, 0L, 1L, 1L, 1L, 0L, 1L, 1L, 0L, 1L, 1L, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 1L, 0L, 1L, 1L, 0L, 1L, 0L, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 1L, 0L, 1L, 1L, 0L, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1L, 1L, 0L)), class = "data.frame", row.names = c(NA, -100L)))</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call:  rctglm(formula = Y ~ ., group_indicator = A, family = binomial, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     data = dat_binom, estimand_fun = "ate")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Summary of estimand related statistics:</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Counterfactual means, psi0 and psi1, based on groups in column A</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimand function r: psi1 - psi0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimand (r(psi_1, psi_0)) estimate (SE): 0.2976 (0.06849)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Summary of glm fit:</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error z value Pr(&gt;|z|)    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)   0.5795     0.3323   1.744 0.081141 .  </span>
@@ -349,7 +178,6 @@ and <code>se_estimand</code>of an <code>rctglm</code> class object.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 86.586</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

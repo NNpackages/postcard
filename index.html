@@ -119,15 +119,16 @@
 <p>This creates an <code><a href="reference/rctglm.html">rctglm()</a></code> object which prints as</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ate</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Object of class 'rctglm'</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Call:  rctglm(formula = Y ~ A * W, group_indicator = A, family = "gaussian", </span></span>
 <span><span class="co">#&gt;     data = dat_treat)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; - Counterfactual control mean (Psi_0=E[Y|X, A=0]) estimate: 2.78</span></span>
-<span><span class="co">#&gt; - Counterfactual control mean (Psi_1=E[Y|X, A=1]) estimate: 4.87</span></span>
-<span><span class="co">#&gt; - Estimand function r: psi1 - psi0</span></span>
-<span><span class="co">#&gt; - Estimand (r(Psi_1, Psi_0)) estimate (SE): 2.09 (0.0921)</span></span></code></pre></div>
+<span><span class="co">#&gt; Counterfactual control mean (psi_0=E[Y|X, A=0]) estimate: 2.776</span></span>
+<span><span class="co">#&gt; Counterfactual control mean (psi_1=E[Y|X, A=1]) estimate: 4.867</span></span>
+<span><span class="co">#&gt; Estimand function r: psi1 - psi0</span></span>
+<span><span class="co">#&gt; Estimand (r(psi_1, psi_0)) estimate (SE): 2.091 (0.09209)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="structure-of-rctglm-and-methods-for-extracting-entities">Structure of <code>rctglm</code> and methods for extracting entities<a class="anchor" aria-label="anchor" href="#structure-of-rctglm-and-methods-for-extracting-entities"></a>
@@ -171,7 +172,33 @@
 <span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span>
 <span><span class="co">#&gt; (Intercept)           A           W         A:W </span></span>
 <span><span class="co">#&gt;  2.77585401  2.09122279  0.02364106  0.04961895</span></span>
-<span><span class="co"># summary(ate) # Not printing to avoid long output in formatted output</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:  rctglm(formula = Y ~ A * W, group_indicator = A, family = "gaussian", </span></span>
+<span><span class="co">#&gt;     data = dat_treat)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ── Summary of estimand related statistics: ──</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Counterfactual means, psi0 and psi1, based on groups in column A</span></span>
+<span><span class="co">#&gt; Estimand function r: psi1 - psi0</span></span>
+<span><span class="co">#&gt; Estimand (r(psi_1, psi_0)) estimate (SE): 2.091 (0.09209)</span></span>
+<span><span class="co">#&gt; ── Summary of glm fit: ──</span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; (Intercept)  2.77585    0.06543  42.425   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; A            2.09122    0.09242  22.628   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; W            0.02364    0.05687   0.416    0.678    </span></span>
+<span><span class="co">#&gt; A:W          0.04962    0.07908   0.627    0.530    </span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; (Dispersion parameter for gaussian family taken to be 2.125824)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     Null deviance: 3222.5  on 999  degrees of freedom</span></span>
+<span><span class="co">#&gt; Residual deviance: 2117.3  on 996  degrees of freedom</span></span>
+<span><span class="co">#&gt; AIC: 3598</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Number of Fisher Scoring iterations: 2</span></span></code></pre></div>
 <p>See more info in the documentation page <code><a href="reference/rctglm_methods.html">rctglm_methods()</a></code>.</p>
 </div>
 <div class="section level3">
@@ -209,15 +236,16 @@
 <p>Quick results of the fit can be seen by printing the object:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ate_prog</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Object of class 'rctglm'</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Call:  rctglm_with_prognosticscore(formula = Y ~ A * W, family = gaussian(link = "identity"), </span></span>
 <span><span class="co">#&gt;     data = dat_treat, group_indicator = A, data_hist = dat_notreat)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; - Counterfactual control mean (Psi_0=E[Y|X, A=0]) estimate: 2.83</span></span>
-<span><span class="co">#&gt; - Counterfactual control mean (Psi_1=E[Y|X, A=1]) estimate: 4.82</span></span>
-<span><span class="co">#&gt; - Estimand function r: psi1 - psi0</span></span>
-<span><span class="co">#&gt; - Estimand (r(Psi_1, Psi_0)) estimate (SE): 1.99 (0.0641)</span></span></code></pre></div>
+<span><span class="co">#&gt; Counterfactual control mean (psi_0=E[Y|X, A=0]) estimate: 2.827</span></span>
+<span><span class="co">#&gt; Counterfactual control mean (psi_1=E[Y|X, A=1]) estimate: 4.821</span></span>
+<span><span class="co">#&gt; Estimand function r: psi1 - psi0</span></span>
+<span><span class="co">#&gt; Estimand (r(psi_1, psi_0)) estimate (SE): 1.994 (0.06406)</span></span></code></pre></div>
 <p>It’s evident that in this case where there is a non-linear relationship between the covariate we observe and the response, adjusting for the prognostic score reduces the standard error of our estimand approximation by quite a bit.</p>
 <div class="section level4">
 <h4 id="investigating-the-prognostic-model">Investigating the prognostic model<a class="anchor" aria-label="anchor" href="#investigating-the-prognostic-model"></a>

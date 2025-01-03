@@ -139,15 +139,16 @@ to use the estimand function <code>psi1 / psi0</code> as seen below:</p>
 <span><span class="co">#&gt; • Alternatively, specify the derivative through the argument</span></span>
 <span><span class="co">#&gt; `estimand_fun_deriv1`</span></span>
 <span><span class="va">rate_ratio</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Object of class 'rctglm'</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Call:  rctglm(formula = Y ~ A + W, group_indicator = A, family = "poisson", </span></span>
 <span><span class="co">#&gt;     data = dat_pois, estimand_fun = "rate_ratio")</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; - Counterfactual control mean (Psi_0=E[Y|X, A=0]) estimate: 25.5</span></span>
-<span><span class="co">#&gt; - Counterfactual control mean (Psi_1=E[Y|X, A=1]) estimate: 198</span></span>
-<span><span class="co">#&gt; - Estimand function r: psi1/psi0</span></span>
-<span><span class="co">#&gt; - Estimand (r(Psi_1, Psi_0)) estimate (SE): 7.77 (0.0322)</span></span></code></pre></div>
+<span><span class="co">#&gt; Counterfactual control mean (psi_0=E[Y|X, A=0]) estimate: 25.47</span></span>
+<span><span class="co">#&gt; Counterfactual control mean (psi_1=E[Y|X, A=1]) estimate: 197.9</span></span>
+<span><span class="co">#&gt; Estimand function r: psi1/psi0</span></span>
+<span><span class="co">#&gt; Estimand (r(psi_1, psi_0)) estimate (SE): 7.769 (0.03216)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="specifying-any-estimand">Specifying any estimand<a class="anchor" aria-label="anchor" href="#specifying-any-estimand"></a>
@@ -175,17 +176,18 @@ effect.</p>
 <span>  estimand_fun <span class="op">=</span> <span class="va">nonsense_estimand_fun</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span><span class="va">nonsense_estimand</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Object of class 'rctglm'</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Call:  rctglm(formula = Y ~ A * W, group_indicator = A, family = poisson(), </span></span>
 <span><span class="co">#&gt;     data = dat_pois, estimand_fun = nonsense_estimand_fun, verbose = 0)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; - Counterfactual control mean (Psi_0=E[Y|X, A=0]) estimate: 25.4</span></span>
-<span><span class="co">#&gt; - Counterfactual control mean (Psi_1=E[Y|X, A=1]) estimate: 198</span></span>
-<span><span class="co">#&gt; - Estimand function r: {</span></span>
+<span><span class="co">#&gt; Counterfactual control mean (psi_0=E[Y|X, A=0]) estimate: 25.41</span></span>
+<span><span class="co">#&gt; Counterfactual control mean (psi_1=E[Y|X, A=1]) estimate: 197.8</span></span>
+<span><span class="co">#&gt; Estimand function r: {</span></span>
 <span><span class="co">#&gt;     psi1/sqrt(psi0) * 2 - 1</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; - Estimand (r(Psi_1, Psi_0)) estimate (SE): 77.5 (0.905)</span></span></code></pre></div>
+<span><span class="co">#&gt; Estimand (r(psi_1, psi_0)) estimate (SE): 77.5 (0.9047)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
@@ -232,7 +234,7 @@ learners:</p>
 <span><span class="co">#&gt;             grid = data.frame(trees = seq(from = 25, to = 500, </span></span>
 <span><span class="co">#&gt;                 by = 25), tree_depth = 3)))</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x560c2bf7a1c0&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x564ad5583700&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:PostCard&gt;</span></span></code></pre></div>
 </div>
 <div class="section level5">
@@ -301,7 +303,7 @@ argument.</p>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 2 resampling: mod_rf (1.5s)</span></span></span>
 <span><span class="co">#&gt; <span style="color: #0000BB;">i</span>  <span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span></span>
 <span><span class="co">#&gt; <span style="color: #0000BB;">i</span> <span style="color: #000000;">2 of 2 resampling: mod_svm.linear</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 2 resampling: mod_svm.linear (114ms)</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 2 resampling: mod_svm.linear (105ms)</span></span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Model with lowest RMSE: mod_svm.linear</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Investigate trained learners and fitted model in `prognostic_info` list element</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Setting the group allocation probability `group_allocation_prob` as the mean of column `A` in data: 0.529</span></span>
