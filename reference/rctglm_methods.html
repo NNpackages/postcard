@@ -48,24 +48,21 @@ details for more information on each method.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for class 'rctglm'</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fl">3L</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"digits"</span><span class="op">)</span> <span class="op">-</span> <span class="fl">3L</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
+<span><span class="fu">estimand</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
 <span><span class="co"># S3 method for class 'rctglm'</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu">estimand</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">se_estimand</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for class 'rctglm'</span></span>
+<span><span class="fu">se_estimand</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'rctglm'</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># S3 method for class 'summary.rctglm'</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fl">3L</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"digits"</span><span class="op">)</span> <span class="op">-</span> <span class="fl">3L</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">estimand</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span></span>
 <span><span class="co"># S3 method for class 'rctglm'</span></span>
-<span><span class="fu">estimand</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">se_estimand</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># S3 method for class 'rctglm'</span></span>
-<span><span class="fu">se_estimand</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -90,17 +87,17 @@ details for more information on each method.</p>
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p><code>coef</code> just use the corresponding <code>glm</code> methods on the <code>glm</code>
-fit contained within the <code>rctglm</code> object. Thus, this function is a
-shortcuts to running <code>coef(x$glm)</code>.</p>
-<p><code>summary</code> summarises information related to the estimand as well as
-the underlying GLM fit.</p>
-<p><code>estimand</code> and <code>se_estimand</code> are methods for extracting the estimated
+    <p><code>estimand</code> and <code>se_estimand</code> are methods for extracting the estimated
 estimand value as well as the standard error (SE) of the estimand.
 Extract the plug-in estimation of the estimand, found by using the
 estimand function on the predicted counterfactual means of each group.
 These functions are a shortcut to extract the list elements <code>estimand</code>
-and <code>se_estimand</code>of an <code>rctglm</code> class object.</p>
+and <code>se_estimand</code> of an <code>rctglm</code> class object.</p>
+<p><code>summary</code> summarises information related to the estimand as well as
+the underlying GLM fit.</p>
+<p><code>coef</code> just use the corresponding <code>glm</code> methods on the <code>glm</code>
+fit contained within the <code>rctglm</code> object. Thus, this function is a
+shortcuts to running <code>coef(x$glm)</code>.</p>
     </div>
 
     <div class="section level2">
@@ -146,9 +143,6 @@ and <code>se_estimand</code>of an <code>rctglm</code> class object.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.2976071</span>
 <span class="r-in"><span><span class="fu">se_estimand</span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.06849311</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)          X1           A </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.5794888   1.3539024   2.2197052 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call:  rctglm(formula = Y ~ ., group_indicator = A, family = binomial, </span>
@@ -178,6 +172,9 @@ and <code>se_estimand</code>of an <code>rctglm</code> class object.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> AIC: 86.586</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of Fisher Scoring iterations: 5</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)          X1           A </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.5794888   1.3539024   2.2197052 </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
