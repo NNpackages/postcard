@@ -110,14 +110,14 @@
 </ul>
 <p>Thus, we can estimate the ATE by simply writing the below:</p>
 <blockquote>
-<p>Note that as a default, information about the algorithm is printed in the console, but here we suppress this behavior. See more in <code>vignette("non-default")</code>.</p>
+<p>Note that as a default, information about the algorithm is printed in the console, but here we suppress this behavior. See more in <code><a href="articles/more-details.html">vignette("more-details")</a></code>.</p>
 </blockquote>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ate</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rctglm.html">rctglm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">Y</span> <span class="op">~</span> <span class="va">A</span> <span class="op">*</span> <span class="va">W</span>,</span>
 <span>              group_indicator <span class="op">=</span> <span class="va">A</span>,</span>
 <span>              data <span class="op">=</span> <span class="va">dat_treat</span>,</span>
 <span>              family <span class="op">=</span> <span class="st">"gaussian"</span><span class="op">)</span> <span class="co"># Default value</span></span></code></pre></div>
-<p>This creates an <code><a href="reference/rctglm.html">rctglm()</a></code> object which prints as</p>
+<p>This creates an <code>rctglm</code> object which prints as</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ate</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -259,7 +259,7 @@
 </li>
 </ul>
 </li>
-<li>A list of the learners used for fitting the model using [fit_best_learner()]
+<li>A list of the learners used for fitting the model using <code><a href="reference/fit_best_learner.html">fit_best_learner()</a></code>
 <ul>
 <li>Accessible through <code>ate$prognostic_info$learners</code>
 </li>
