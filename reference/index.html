@@ -91,10 +91,16 @@
 
         </dt>
         <dd>Generic for extracting the fitted prognostic model</dd>
-      </dl></div><div class="section level2">
-      <h2 id="fitting-a-discrete-super-learner-to-data-using-cross-validation">Fitting a discrete super learner to data using cross validation<a class="anchor" aria-label="anchor" href="#fitting-a-discrete-super-learner-to-data-using-cross-validation"></a></h2>
+      </dl><dl><dt>
 
-      <div class="section-desc"><p>The function fits and tunes a list of models specified by the user and selects the best model based on RMSE in training data</p></div>
+          <code><a href="fit_best_learner.html">fit_best_learner()</a></code>
+
+        </dt>
+        <dd>Find the best learner in terms of RMSE among specified learners using cross validation</dd>
+      </dl></div><div class="section level2">
+      <h2 id="power-approximation">Power approximation<a class="anchor" aria-label="anchor" href="#power-approximation"></a></h2>
+
+      <div class="section-desc"><p>Approximation formulas exist to estimate the sample size needed to obtain a power of a chosen level. Functionalities are implemented here to utilise these formulas to approximate the power from a given sample size and assumed effect size together with other parameters.</p></div>
 
 
     </div><div class="section level2">
@@ -104,10 +110,16 @@
 
       <dl><dt>
 
-          <code><a href="fit_best_learner.html">fit_best_learner()</a></code>
+          <code><a href="power_gs.html">power_gs()</a></code>
 
         </dt>
-        <dd>Find the best learner in terms of RMSE among specified learners using cross validation</dd>
+        <dd>Guenther-Schouten Power Approximation</dd>
+      </dl><dl><dt>
+
+          <code><a href="power_nc.html">power_nc()</a></code>
+
+        </dt>
+        <dd>Power Approximation based on non-centrality parameter</dd>
       </dl></div><div class="section level2">
       <h2 id="generate-data-from-glm-model-with-known-mean">Generate data from GLM model with known mean<a class="anchor" aria-label="anchor" href="#generate-data-from-glm-model-with-known-mean"></a></h2>
 
