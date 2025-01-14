@@ -4,7 +4,7 @@ Title: Prognostic covariate adjustment for estimation of estimands
 Version: 1.0.0.9000
 Authors@R: c(
     person("Mathias Lerbech", "Jeppesen", , "mathiasljeppesen@outlook.com", role = c("aut", "cre")),
-    person("Emilie", "Hoejbjerre-Frandsen", , "ehfd@novonordisk.com", role = "aut")
+    person("Emilie", "Hojbjerre-Frandsen", , "ehfd@novonordisk.com", role = "aut")
   )
 Description: Convenient functions for conducting analysis using prognostic
     covariate adjustment for GLMs. The package uses plug-in estimation for

@@ -20,7 +20,7 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Emilie Hoejbjerre-Frandsen \email{ehfd@novonordisk.com}
+  \item Emilie Hojbjerre-Frandsen \email{ehfd@novonordisk.com}
 }
 
 }
