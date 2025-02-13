@@ -3,7 +3,7 @@
 the model to produce counterfactual predictions as a prognostic score that is then adjusted
 for as a covariate in the rctglm procedure."><meta property="og:description" content="The procedure uses fit_best_learner to fit a prognostic model to historical data and uses
 the model to produce counterfactual predictions as a prognostic score that is then adjusted
-for as a covariate in the rctglm procedure."></head><body>
+for as a covariate in the rctglm procedure."><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -107,7 +107,8 @@ As a default, the ratio of 1's in data is used.</p></dd>
 
 <dt id="arg-estimand-fun">estimand_fun<a class="anchor" aria-label="anchor" href="#arg-estimand-fun"></a></dt>
 <dd><p>a <code>function</code> with arguments <code>psi0</code> and <code>psi1</code> specifying
-the estimand or a <code>character</code> specifying a default estimand function. See
+the estimand. Alternative, specify "ate" or "rate_ratio" as a <code>character</code>
+to use one of the default estimand functions. See
 more details in the "Estimand" section of this documentation.</p></dd>
 
 
@@ -146,7 +147,9 @@ regression and boosted trees</p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
-<dd><p><code>numeric</code> verbosity level specifying how much information should be printed to the user (Defaults to <code>2</code>, overwritable using option 'PostCard.verbose' or environment variable 'R_POSTCARD_VERBOSE')</p></dd>
+<dd><p><code>numeric</code> verbosity level. Higher values means more information is
+printed in console. A value of 0 means nothing is printed to console during
+execution (Defaults to <code>2</code>, overwritable using option 'PostCard.verbose' or environment variable 'R_POSTCARD_VERBOSE')</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -197,15 +200,15 @@ in control group.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • mod_gbt</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span>	<span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">1 of 3 resampling: mod_mars</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 3 resampling: mod_mars (122ms)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 3 resampling: mod_mars (117ms)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span>	<span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">2 of 3 resampling: mod_lm</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 3 resampling: mod_lm (93ms)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 3 resampling: mod_lm (91ms)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt (922ms)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt (913ms)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Model with lowest RMSE: mod_mars</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Investigate trained learners and fitted model in `prognostic_info` list element</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Setting the group allocation probability `group_allocation_prob` as the mean of column `A` in data: 0.38</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Setting the group allocation probability `group_allocation_prob` as the mean of column `A` in data: 0.47</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Symbolic differentiation of estimand function</span> ──</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
