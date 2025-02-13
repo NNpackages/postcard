@@ -138,14 +138,11 @@
 <ul>
 <li>Estimand related information
 <ul>
-<li>Value of plug-in estimation of estimand
+<li>A <code>data.frame</code> of plug-in estimate of estimand, standard error (SE) estimate and variance estimate of estimand
 <ul>
-<li>Accessible through <code>ate$estimand</code> or using method <code>estimand(ate)</code>
+<li>Accessible through <code>ate$estimand</code> or using methods <code>estimand(ate)</code> and <code>est(ate)</code>
 </li>
 </ul>
-</li>
-<li>Variance and standard error (SE) of estimand</li>
-<li>Accessible through <code>ate$var_estimand</code> and <code>ate$se_estimand</code> as well as the SE with method <code>se_estimand(ate)</code>
 </li>
 <li>Counterfactual predictions (for each observation) and counterfactual means for both groups
 <ul>
@@ -159,17 +156,19 @@
 <ul>
 <li>Entire <code>glm</code> object available through <code>ate$glm</code>
 </li>
-<li>Methods <code>coef</code> and <code>summary</code> exist for the <code>rctglm</code> class, which uses the corresponding methods on the <code>glm</code> object contained within <code>rctglm</code>
+<li>Method <code>coef</code> uses the corresponding method on the <code>glm</code> object contained within <code>rctglm</code>
 </li>
+<li>
+<code>summary</code> creates a <code>summary.rctglm</code> object with some summarised information</li>
 </ul>
 </li>
 </ul>
 <p>Thus, methods available are:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/rctglm_methods.html">estimand</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 2.091095</span></span>
-<span><span class="fu"><a href="reference/rctglm_methods.html">se_estimand</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.09208528</span></span>
+<code class="sourceCode R"><span><span class="co"># "estimate" also available as alternative to just "est"</span></span>
+<span><span class="fu"><a href="reference/rctglm_methods.html">est</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Estimate Std. Error Variance</span></span>
+<span><span class="co">#&gt; 1 2.091095 0.09208528 8.479699</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span>
 <span><span class="co">#&gt; (Intercept)           A           W         A:W </span></span>
 <span><span class="co">#&gt;  2.77585401  2.09122279  0.02364106  0.04961895</span></span>
@@ -180,7 +179,7 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ── Summary of estimand related statistics: ──</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Counterfactual means, psi0 and psi1, based on groups in column A</span></span>
+<span><span class="co">#&gt; Counterfactual means, psi0 and psi1, based on groups in column </span></span>
 <span><span class="co">#&gt; Estimand function r: psi1 - psi0</span></span>
 <span><span class="co">#&gt; Estimand (r(psi_1, psi_0)) estimate (SE): 2.091 (0.09209)</span></span>
 <span><span class="co">#&gt; ── Summary of glm fit: ──</span></span>

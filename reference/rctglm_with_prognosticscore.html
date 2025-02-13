@@ -95,7 +95,9 @@ for as a covariate in the <a href="rctglm.html">rctglm</a> procedure.</p>
 
 
 <dt id="arg-group-indicator">group_indicator<a class="anchor" aria-label="anchor" href="#arg-group-indicator"></a></dt>
-<dd><p>(name of) the variable in <code>data</code> that identifies randomisation groups</p></dd>
+<dd><p>(name of) the <em>binary</em> variable in <code>data</code> that
+identifies randomisation groups. The variable is required to be binary to
+make the "orientation" of the <code>estimand_fun</code> clear.</p></dd>
 
 
 <dt id="arg-group-allocation-prob">group_allocation_prob<a class="anchor" aria-label="anchor" href="#arg-group-allocation-prob"></a></dt>
@@ -104,8 +106,9 @@ As a default, the ratio of 1's in data is used.</p></dd>
 
 
 <dt id="arg-estimand-fun">estimand_fun<a class="anchor" aria-label="anchor" href="#arg-estimand-fun"></a></dt>
-<dd><p>a <code>character</code> specifying a default estimand function, or <code>function</code> with
-arguments <code>psi0</code> and <code>psi1</code> specifying the estimand.</p></dd>
+<dd><p>a <code>function</code> with arguments <code>psi0</code> and <code>psi1</code> specifying
+the estimand or a <code>character</code> specifying a default estimand function. See
+more details in the "Estimand" section of this documentation.</p></dd>
 
 
 <dt id="arg-estimand-fun-deriv-">estimand_fun_deriv0<a class="anchor" aria-label="anchor" href="#arg-estimand-fun-deriv-"></a></dt>
@@ -194,12 +197,12 @@ in control group.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • mod_gbt</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span>	<span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">1 of 3 resampling: mod_mars</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 3 resampling: mod_mars (118ms)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 3 resampling: mod_mars (122ms)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span>	<span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">2 of 3 resampling: mod_lm</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 3 resampling: mod_lm (87ms)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 3 resampling: mod_lm (93ms)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt (891ms)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt (922ms)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Model with lowest RMSE: mod_mars</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Investigate trained learners and fitted model in `prognostic_info` list element</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Setting the group allocation probability `group_allocation_prob` as the mean of column `A` in data: 0.38</span>

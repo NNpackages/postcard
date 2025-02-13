@@ -74,7 +74,9 @@ covariates in randomisation groups.</p>
 
 
 <dt id="arg-group-indicator">group_indicator<a class="anchor" aria-label="anchor" href="#arg-group-indicator"></a></dt>
-<dd><p>(name of) the variable in <code>data</code> that identifies randomisation groups</p></dd>
+<dd><p>(name of) the <em>binary</em> variable in <code>data</code> that
+identifies randomisation groups. The variable is required to be binary to
+make the "orientation" of the <code>estimand_fun</code> clear.</p></dd>
 
 
 <dt id="arg-family">family<a class="anchor" aria-label="anchor" href="#arg-family"></a></dt>
@@ -100,8 +102,9 @@ As a default, the ratio of 1's in data is used.</p></dd>
 
 
 <dt id="arg-estimand-fun">estimand_fun<a class="anchor" aria-label="anchor" href="#arg-estimand-fun"></a></dt>
-<dd><p>a <code>character</code> specifying a default estimand function, or <code>function</code> with
-arguments <code>psi0</code> and <code>psi1</code> specifying the estimand.</p></dd>
+<dd><p>a <code>function</code> with arguments <code>psi0</code> and <code>psi1</code> specifying
+the estimand or a <code>character</code> specifying a default estimand function. See
+more details in the "Estimand" section of this documentation.</p></dd>
 
 
 <dt id="arg-estimand-fun-deriv-">estimand_fun_deriv0<a class="anchor" aria-label="anchor" href="#arg-estimand-fun-deriv-"></a></dt>
@@ -124,14 +127,14 @@ the algorithm will use symbolic differentiation to automatically find the deriva
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>an <code>rctglm</code> object</p>
+    <p>an <code>rctglm</code> object. S3 class which inherits as a list.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The procedure assumes the setup of a randomised clinical trial with observations grouped by a binary
 <code>group_indicator</code> variable, allocated randomly with probability <code>group_allocation_prob</code>. A GLM is
 fit and then used to predict the response of all observations in the event that the <code>group_indicator</code>
-is 0 and 1, respectively. Taking means of these predictions prodeuce the <em>counterfactual means</em>
+is 0 and 1, respectively. Taking means of these predictions produce the <em>counterfactual means</em>
 <code>psi0</code> and <code>psi1</code>, and an estimand <code>r(psi0, psi1)</code> is calculated using any specified <code>estimand_fun</code>.</p>
 <p>The variance of the estimand is found by taking the variance of the influence function of the estimand.</p>
 <p>This method of inference using plug-in estimation and influence functions for the variance produces a
@@ -176,6 +179,11 @@ the <code>estimand_fun</code>.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Symbolically deriving partial derivative of the function 'psi1 - psi0' with respect to 'psi1' as: '1'.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • Alternatively, specify the derivative through the argument</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `estimand_fun_deriv1`</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Pull information on estimand</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="rctglm_methods.html">estimand</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Estimate Std. Error  Variance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.2253213 0.07480332 0.5595537</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
