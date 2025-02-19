@@ -67,10 +67,9 @@ covariates in randomisation groups.</p>
 
 
 <dl><dt id="arg-formula">formula<a class="anchor" aria-label="anchor" href="#arg-formula"></a></dt>
-<dd><p>an object of class <code>"<a href="https://rdrr.io/r/stats/formula.html" class="external-link">formula</a>"</code> (or one that
-    can be coerced to that class): a symbolic description of the
-    model to be fitted.  The details of model specification are given
-    under ‘Details’.</p></dd>
+<dd><p>an object of class "formula" (or one that can be coerced to that class):
+a symbolic description of the model to be fitted. The details of model specification are
+given under ‘Details’ in the <a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a> documentation.</p></dd>
 
 
 <dt id="arg-group-indicator">group_indicator<a class="anchor" aria-label="anchor" href="#arg-group-indicator"></a></dt>
@@ -130,8 +129,23 @@ execution (Defaults to <code>2</code>, overwritable using option 'PostCard.verbo
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>an <code>rctglm</code> object. S3 class which inherits as a list.</p>
-    </div>
+    <p><code>rctglm</code> returns an object of class inheriting from <code>"rctglm"</code>.</p>
+<p>The function <a href="rctglm_methods.html">estimand</a> (or short-hand version <a href="rctglm_methods.html">est</a>) can be used to extract
+a <code>data.frame</code> with an estimated value and standard error of the estimand.</p>
+<p>A method for the generic <a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a> has been added for <code>rctglm</code>
+(i.e., <a href="rctglm_methods.html">coef.rctglm</a>), which uses the method <code>coef.glm</code> to extract coefficient
+information from the underlying <code>glm</code> fit in the procedure.</p>
+<p>An object of class <code>rctglm</code> is a list containing the following components:</p><ul><li><p><code>estimand</code>: A <code>data.frame</code> with plug-in estimate of estimand, standard
+error (SE) estimate and variance estimate of estimand</p></li>
+<li><p><code>estimand_fun</code>: The <code>function</code> used to obtain an estimate of the estimand
+from counterfactual means</p></li>
+<li><p><code>means_counterfactual</code>: A <code>data.frame</code> with counterfactual means <code>psi0</code> and <code>psi1</code></p></li>
+<li><p><code>fitted.values_counterfactual</code>: A <code>data.frame</code> with counterfactual mean
+values, obtained by transforming the linear predictors for each group
+by the inverse of the link function.</p></li>
+<li><p><code>glm</code>: A <code>glm</code> object returned from running <a href="https://rdrr.io/r/stats/glm.html" class="external-link">stats::glm</a> within the procedure</p></li>
+<li><p><code>call</code>: The matched <code>call</code></p></li>
+</ul></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The procedure assumes the setup of a randomised clinical trial with observations grouped by a binary
@@ -188,8 +202,8 @@ the <code>estimand_fun</code>.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Pull information on estimand</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="rctglm_methods.html">estimand</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Estimate Std. Error Variance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2.157641  0.2040392 4.163199</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Estimate Std. Error</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2.157641  0.2040392</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Another example with different family and specification of estimand_fun</span></span></span>
 <span class="r-in"><span><span class="va">dat_binom</span> <span class="op">&lt;-</span> <span class="fu"><a href="glm_data.html">glm_data</a></span><span class="op">(</span></span></span>
