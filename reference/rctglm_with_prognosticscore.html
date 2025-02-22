@@ -141,8 +141,7 @@ evaluating models</p></dd>
 
 
 <dt id="arg-learners">learners<a class="anchor" aria-label="anchor" href="#arg-learners"></a></dt>
-<dd><p>a <code>list</code> of <code>tidymodels</code>. Default uses a combination of MARS, linear
-regression and boosted trees</p></dd>
+<dd><p>a <code>list</code> of <code>tidymodels</code></p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
@@ -159,7 +158,9 @@ which inherits from <a href="rctglm.html">rctglm</a>.</p>
 <a href="rctglm_methods.html">rctglm_methods</a> also work for extracting information from this object.</p>
 <p>An <code>rctglm_prog</code> object is a list with the same components as an <a href="rctglm.html">rctglm</a> object,
 but with an additional list element of:</p><ul><li><p><code>prognostic_info</code>: List with information about the fitted prognostic model
-on historical data. It has components:</p><ul><li><p><code>model_fit</code>: A trained <code>workflow</code> - the result of <a href="fit_best_learner.html">fit_best_learner</a></p></li>
+on historical data. It has components:</p><ul><li><p><code>formula</code>: The <code>formula</code> with symbolic description of how the response
+is modelled as function of covariates in the models</p></li>
+<li><p><code>model_fit</code>: A trained <code>workflow</code> - the result of <a href="fit_best_learner.html">fit_best_learner</a></p></li>
 <li><p><code>learners</code>: A <code>list</code> of learners used for the discrete super learner</p></li>
 <li><p><code>cv_folds</code>: The amount of folds used for cross validation</p></li>
 <li><p><code>data</code>: The historical data used for cross validation when fitting and
@@ -212,12 +213,12 @@ in control group.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 3 resampling: mod_mars (119ms)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span>	<span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">2 of 3 resampling: mod_lm</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 3 resampling: mod_lm (90ms)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 3 resampling: mod_lm (92ms)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt (935ms)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Model with lowest RMSE: mod_mars</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt (941ms)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Model with lowest RMSE: mod_gbt</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Investigate trained learners and fitted model in `prognostic_info` list element</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Setting the group allocation probability `group_allocation_prob` as the mean of column `A` in data: 0.47</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Setting the group allocation probability `group_allocation_prob` as the mean of column `A` in data: 0.54</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Symbolic differentiation of estimand function</span> ──</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
@@ -228,6 +229,10 @@ in control group.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • Alternatively, specify the derivative through the argument</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `estimand_fun_deriv1`</span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Pull information on estimand</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="rctglm_methods.html">estimand</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Estimate Std. Error</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1.943811  0.1914326</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

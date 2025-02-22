@@ -104,50 +104,50 @@ family relevant r&lt;family_name&gt; function for simulating the data</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Generate a gaussian response from a single covariate</span></span></span>
 <span class="r-in"><span><span class="fu">glm_data</span><span class="op">(</span><span class="fl">1</span><span class="op">+</span><span class="fl">2</span><span class="op">*</span><span class="va">x1</span>,</span></span>
 <span class="r-in"><span>                x1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             Y         x1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  -2.0993523 -0.3597136</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   1.3803117 -0.1086270</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   4.7834135  1.8277865</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  -4.6407073 -1.9619177</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   2.9280752  0.9459828</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   3.1051919  0.5489621</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   0.5581786 -0.5774653</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  -2.5665320 -1.2282849</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9   3.2284699  1.0395321</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10  1.5250613  0.4556020</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            Y          x1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  -1.449147 -0.89480241</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   2.865960  0.90426912</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  -1.648712  0.07964921</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  -2.429914 -1.25882722</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   2.268991  1.02568511</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  -1.125662 -0.73077860</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   1.246019 -0.19014551</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   1.550481  0.52886469</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   2.370782  0.55021053</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10  2.566846  0.54968434</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Generate a gaussian response from a single covariate with</span></span></span>
 <span class="r-in"><span><span class="co"># non-linear effects</span></span></span>
 <span class="r-in"><span><span class="fu">glm_data</span><span class="op">(</span><span class="fl">1</span><span class="op">+</span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="va">x1</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                x1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">10</span>, min <span class="op">=</span> <span class="op">-</span><span class="fl">2</span>, max <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           Y         x1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  2.982812 -0.3645845</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  2.765510 -0.5565052</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  3.192723  0.6100402</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  1.768523 -1.4257631</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  2.703715  0.7231945</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  2.914777  1.4371436</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  3.233507  1.3545200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  3.328234  1.5252517</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  3.018810 -1.0492090</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 2.047321  0.3145234</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            Y         x1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  4.5599831  1.0618623</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  1.8888026  0.5078665</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  3.9605488  0.9213538</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  0.9734996 -0.3051824</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  2.3826286 -0.9266769</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  2.0765995  1.0761921</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  1.2399405  0.3493867</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  3.6059388  1.5942710</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  3.6161785  1.4812982</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 1.0885146 -0.4027751</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Generate a negative binomial response</span></span></span>
 <span class="r-in"><span><span class="fu">glm_data</span><span class="op">(</span><span class="fl">1</span><span class="op">+</span><span class="fl">2</span><span class="op">*</span><span class="va">x1</span><span class="op">-</span><span class="va">x2</span>,</span></span>
 <span class="r-in"><span>                x1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                x2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html" class="external-link">rgamma</a></span><span class="op">(</span><span class="fl">10</span>, shape <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                family <span class="op">=</span> <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/negative.binomial.html" class="external-link">negative.binomial</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Y         x1         x2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  1 -0.1209674 0.37081227</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  1  0.4582423 2.04115261</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  0  0.6165347 3.69306068</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  0 -0.1750488 1.97369911</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  0 -0.1228313 2.40876607</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  0 -1.4726915 3.06537971</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  0  0.1236927 0.05520964</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  0 -1.0955924 1.82646237</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  1  0.3883423 3.71799172</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 0 -0.7550303 1.30834183</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Y         x1        x2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   0 -0.7836391 2.3050987</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   1 -0.9531239 1.3214499</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   0  1.7927561 3.7469426</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   0  0.3489767 1.8461783</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   2  0.2591038 2.0354566</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   0 -0.8059519 0.6438993</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   4  0.1056647 0.7646888</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   2 -0.3335997 0.9691220</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  20  1.6418480 0.6479179</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10  0 -0.6439059 0.5980742</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Provide variables as a list/data.frame</span></span></span>
 <span class="r-in"><span><span class="fu">glm_data</span><span class="op">(</span><span class="fl">1</span><span class="op">+</span><span class="fl">2</span><span class="op">*</span><span class="va">x1</span><span class="op">-</span><span class="va">x2</span>,</span></span>
@@ -156,17 +156,17 @@ family relevant r&lt;family_name&gt; function for simulating the data</p></dd>
 <span class="r-in"><span>                  x2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html" class="external-link">rgamma</a></span><span class="op">(</span><span class="fl">10</span>, shape <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span>                <span class="op">)</span>,</span></span>
 <span class="r-in"><span>                family <span class="op">=</span> <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/negative.binomial.html" class="external-link">negative.binomial</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Y          x1         x2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  0 -0.15401329 0.09544077</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  0 -0.05892959 0.65405248</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  0 -0.53258072 0.26243470</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  2  1.07907227 1.72699254</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  2  0.87461531 0.76655304</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  0 -0.66601844 1.33477946</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  0 -1.12627593 1.11398868</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  0 -0.36943564 0.81570337</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  0 -1.18159506 0.97868209</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 1  0.05931762 2.24684486</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Y          x1        x2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  0 -0.05367151 2.0555178</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  0 -0.56352463 4.8979183</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  0 -0.74390896 0.9440099</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  0 -0.10904165 0.3404743</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  0 -0.56082923 2.1408569</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  0  0.18800155 0.6841673</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  1  0.74885094 1.8483538</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  0 -1.91653832 0.6336780</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  2  0.23609585 0.2305099</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 2  0.62895342 1.4685068</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

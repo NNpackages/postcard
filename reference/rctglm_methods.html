@@ -107,7 +107,7 @@ shortcuts to running <code>coef(x$glm)</code>.</p>
 <span class="r-in"><span>              data <span class="op">=</span> <span class="va">dat_binom</span>,</span></span>
 <span class="r-in"><span>              family <span class="op">=</span> <span class="va">binomial</span>,</span></span>
 <span class="r-in"><span>              estimand_fun <span class="op">=</span> <span class="st">"ate"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Setting the group allocation probability `group_allocation_prob` as the mean of column `A` in data: 0.55</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Setting the group allocation probability `group_allocation_prob` as the mean of column `A` in data: 0.46</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Symbolic differentiation of estimand function</span> ──</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
@@ -125,16 +125,16 @@ shortcuts to running <code>coef(x$glm)</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call:  rctglm(formula = Y ~ ., group_indicator = A, family = binomial, </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     data = dat_binom, estimand_fun = "ate")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Counterfactual control mean (psi_0=E[Y|X, A=0]) estimate: 0.5752</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Counterfactual control mean (psi_1=E[Y|X, A=1]) estimate: 0.8644</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Counterfactual control mean (psi_0=E[Y|X, A=0]) estimate: 0.6977</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Counterfactual control mean (psi_1=E[Y|X, A=1]) estimate: 0.9403</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimand function r: psi1 - psi0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Estimand (r(psi_1, psi_0)) estimate (SE): 0.2891 (0.07192)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimand (r(psi_1, psi_0)) estimate (SE): 0.2426 (0.06541)</span>
 <span class="r-in"><span><span class="fu">estimand</span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Estimate Std. Error</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.289148 0.07191701</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Estimate Std. Error</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.2426473 0.06541008</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)          X1           A </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.9608425   2.0399661   2.3414881 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1.099633    1.422773    2.338221 </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
