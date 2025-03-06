@@ -131,7 +131,7 @@
 <span><span class="co">#&gt; Counterfactual control mean (psi_0=E[Y|X, A=0]) estimate: 2.776</span></span>
 <span><span class="co">#&gt; Counterfactual control mean (psi_1=E[Y|X, A=1]) estimate: 4.867</span></span>
 <span><span class="co">#&gt; Estimand function r: psi1 - psi0</span></span>
-<span><span class="co">#&gt; Estimand (r(psi_1, psi_0)) estimate (SE): 2.091 (0.09209)</span></span></code></pre></div>
+<span><span class="co">#&gt; Estimand (r(psi_1, psi_0)) estimate (SE): 2.091 (0.09225)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="structure-of-rctglm-and-methods-for-extracting-entities">Structure of <code>rctglm</code> and methods for extracting entities<a class="anchor" aria-label="anchor" href="#structure-of-rctglm-and-methods-for-extracting-entities"></a>
@@ -168,7 +168,7 @@
 <code class="sourceCode R"><span><span class="co"># "estimate" also available as alternative to just "est"</span></span>
 <span><span class="fu"><a href="reference/rctglm_methods.html">est</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   Estimate Std. Error</span></span>
-<span><span class="co">#&gt; 1 2.091095 0.09208528</span></span>
+<span><span class="co">#&gt; 1 2.091095 0.09224543</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span>
 <span><span class="co">#&gt; (Intercept)           A           W         A:W </span></span>
 <span><span class="co">#&gt;  2.77585401  2.09122279  0.02364106  0.04961895</span></span></code></pre></div>
@@ -215,10 +215,10 @@
 <span><span class="co">#&gt; Call:  rctglm_with_prognosticscore(formula = Y ~ A * W, family = gaussian(link = "identity"), </span></span>
 <span><span class="co">#&gt;     data = dat_treat, group_indicator = A, data_hist = dat_notreat)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Counterfactual control mean (psi_0=E[Y|X, A=0]) estimate: 2.827</span></span>
-<span><span class="co">#&gt; Counterfactual control mean (psi_1=E[Y|X, A=1]) estimate: 4.821</span></span>
+<span><span class="co">#&gt; Counterfactual control mean (psi_0=E[Y|X, A=0]) estimate: 2.828</span></span>
+<span><span class="co">#&gt; Counterfactual control mean (psi_1=E[Y|X, A=1]) estimate: 4.819</span></span>
 <span><span class="co">#&gt; Estimand function r: psi1 - psi0</span></span>
-<span><span class="co">#&gt; Estimand (r(psi_1, psi_0)) estimate (SE): 1.994 (0.06406)</span></span></code></pre></div>
+<span><span class="co">#&gt; Estimand (r(psi_1, psi_0)) estimate (SE): 1.992 (0.06445)</span></span></code></pre></div>
 <p>It’s evident that in this case where there is a non-linear relationship between the covariate we observe and the response, adjusting for the prognostic score reduces the standard error of our estimand approximation by quite a bit.</p>
 <div class="section level4">
 <h4 id="investigating-the-prognostic-model">Investigating the prognostic model<a class="anchor" aria-label="anchor" href="#investigating-the-prognostic-model"></a>
@@ -237,7 +237,7 @@
 </li>
 </ul>
 </li>
-<li>The number of folds used for cross validation (<code>cv_folds</code>) and the historical data used for fitting the model</li>
+<li>The number of folds used for cross validation (<code>cv_prog_folds</code>) and the historical data used for fitting the model</li>
 </ul>
 </div>
 </div>

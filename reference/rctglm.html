@@ -58,7 +58,7 @@ covariates in randomisation groups.</p>
 <span>  estimand_fun_deriv0 <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  estimand_fun_deriv1 <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  cv_variance <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  cv_folds_variance <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  cv_variance_folds <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="fu">options</span><span class="fu">::</span><span class="fu"><a href="https://dgkf.github.io/options/reference/opt.html" class="external-link">opt</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -124,7 +124,7 @@ the algorithm will use symbolic differentiation to automatically find the deriva
 using cross-validation (see details of rctglm).</p></dd>
 
 
-<dt id="arg-cv-folds-variance">cv_folds_variance<a class="anchor" aria-label="anchor" href="#arg-cv-folds-variance"></a></dt>
+<dt id="arg-cv-variance-folds">cv_variance_folds<a class="anchor" aria-label="anchor" href="#arg-cv-variance-folds"></a></dt>
 <dd><p>a <code>numeric</code> with the number of folds to use for cross
 validation if <code>cv_variance</code> is <code>TRUE</code>.</p></dd>
 
@@ -168,7 +168,7 @@ is 0 and 1, respectively. Taking means of these predictions produce the <em>coun
 <p>The variance of the estimand is found by taking the variance of the influence function of the estimand.
 If <code>cv_variance</code> is <code>TRUE</code>, then the counterfactual predictions for each observation (which are
 used to calculate the value of the influence function) is obtained as out-of-sample (OOS) predictions
-using cross validation with number of folds specified by <code>cv_folds</code>. The cross validation splits
+using cross validation with number of folds specified by <code>cv_variance_folds</code>. The cross validation splits
 are performed using stratified sampling with <code>group_indicator</code> as the <code>strata</code> argument in <a href="https://rsample.tidymodels.org/reference/vfold_cv.html" class="external-link">rsample::vfold_cv</a>.</p>
 <p>This method of inference using plug-in estimation and influence functions for the variance produces a
 causal estimate of the estimand, as stated by articles XXXX.</p>
