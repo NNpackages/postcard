@@ -137,6 +137,8 @@ rctglm_with_prognosticscore <- function(
     estimand_fun = estimand_fun,
     estimand_fun_deriv0 = estimand_fun_deriv0,
     estimand_fun_deriv1 = estimand_fun_deriv1,
+    cv_variance = cv_variance,
+    cv_variance_folds = cv_variance_folds,
     verbose = verbose,
     ...
   )
