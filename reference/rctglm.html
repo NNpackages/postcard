@@ -50,15 +50,15 @@ covariates in randomisation groups.</p>
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rctglm</span><span class="op">(</span></span>
 <span>  <span class="va">formula</span>,</span>
-<span>  <span class="va">group_indicator</span>,</span>
+<span>  <span class="va">exposure_indicator</span>,</span>
+<span>  <span class="va">exposure_prob</span>,</span>
 <span>  <span class="va">family</span>,</span>
 <span>  <span class="va">data</span>,</span>
-<span>  group_allocation_prob <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  estimand_fun <span class="op">=</span> <span class="st">"ate"</span>,</span>
 <span>  estimand_fun_deriv0 <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  estimand_fun_deriv1 <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  cv_variance <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  cv_variance_folds <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  cv_variance_folds <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="fu">options</span><span class="fu">::</span><span class="fu"><a href="https://dgkf.github.io/options/reference/opt.html" class="external-link">opt</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -74,10 +74,16 @@ a symbolic description of the model to be fitted. The details of model specifica
 given under ‘Details’ in the <a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a> documentation.</p></dd>
 
 
-<dt id="arg-group-indicator">group_indicator<a class="anchor" aria-label="anchor" href="#arg-group-indicator"></a></dt>
+<dt id="arg-exposure-indicator">exposure_indicator<a class="anchor" aria-label="anchor" href="#arg-exposure-indicator"></a></dt>
 <dd><p>(name of) the <em>binary</em> variable in <code>data</code> that
 identifies randomisation groups. The variable is required to be binary to
 make the "orientation" of the <code>estimand_fun</code> clear.</p></dd>
+
+
+<dt id="arg-exposure-prob">exposure_prob<a class="anchor" aria-label="anchor" href="#arg-exposure-prob"></a></dt>
+<dd><p>a <code>numeric</code> with the probabiliy of being in
+"group 1" (rather than group 0) in groups defined by <code>exposure_indicator</code>.
+As a default, the ratio of 1's in data is used.</p></dd>
 
 
 <dt id="arg-family">family<a class="anchor" aria-label="anchor" href="#arg-family"></a></dt>
@@ -97,13 +103,8 @@ make the "orientation" of the <code>estimand_fun</code> clear.</p></dd>
     typically the environment from which <code>glm</code> is called.</p></dd>
 
 
-<dt id="arg-group-allocation-prob">group_allocation_prob<a class="anchor" aria-label="anchor" href="#arg-group-allocation-prob"></a></dt>
-<dd><p>a <code>numeric</code> with the probabiliy of being assigned "group 1" (rather than group 0).
-As a default, the ratio of 1's in data is used.</p></dd>
-
-
 <dt id="arg-estimand-fun">estimand_fun<a class="anchor" aria-label="anchor" href="#arg-estimand-fun"></a></dt>
-<dd><p>a <code>function</code> with arguments <code>psi0</code> and <code>psi1</code> specifying
+<dd><p>a <code>function</code> with arguments <code>psi1</code> and <code>psi0</code> specifying
 the estimand. Alternative, specify "ate" or "rate_ratio" as a <code>character</code>
 to use one of the default estimand functions. See
 more details in the "Estimand" section of this documentation.</p></dd>
@@ -161,15 +162,15 @@ by the inverse of the link function.</p></li>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The procedure assumes the setup of a randomised clinical trial with observations grouped by a binary
-<code>group_indicator</code> variable, allocated randomly with probability <code>group_allocation_prob</code>. A GLM is
-fit and then used to predict the response of all observations in the event that the <code>group_indicator</code>
+<code>exposure_indicator</code> variable, allocated randomly with probability <code>exposure_prob</code>. A GLM is
+fit and then used to predict the response of all observations in the event that the <code>exposure_indicator</code>
 is 0 and 1, respectively. Taking means of these predictions produce the <em>counterfactual means</em>
 <code>psi0</code> and <code>psi1</code>, and an estimand <code>r(psi0, psi1)</code> is calculated using any specified <code>estimand_fun</code>.</p>
 <p>The variance of the estimand is found by taking the variance of the influence function of the estimand.
 If <code>cv_variance</code> is <code>TRUE</code>, then the counterfactual predictions for each observation (which are
 used to calculate the value of the influence function) is obtained as out-of-sample (OOS) predictions
 using cross validation with number of folds specified by <code>cv_variance_folds</code>. The cross validation splits
-are performed using stratified sampling with <code>group_indicator</code> as the <code>strata</code> argument in <a href="https://rsample.tidymodels.org/reference/vfold_cv.html" class="external-link">rsample::vfold_cv</a>.</p>
+are performed using stratified sampling with <code>exposure_indicator</code> as the <code>strata</code> argument in <a href="https://rsample.tidymodels.org/reference/vfold_cv.html" class="external-link">rsample::vfold_cv</a>.</p>
 <p>This method of inference using plug-in estimation and influence functions for the variance produces a
 causal estimate of the estimand, as stated by articles XXXX.</p>
     </div>
@@ -178,7 +179,7 @@ causal estimate of the estimand, as stated by articles XXXX.</p>
 
 
 <p>As noted in the description, <code>psi0</code> and <code>psi1</code> are the counterfactual means found by prediction using
-a fitted GLM in the binary groups defined by <code>group_indicator</code>.</p>
+a fitted GLM in the binary groups defined by <code>exposure_indicator</code>.</p>
 <p>Default estimand functions can be specified via <code>"ate"</code> (which uses the function
 <code>function(psi1, psi0) psi1-psi0</code>) and <code>"rate_ratio"</code> (which uses the function
 <code>function(psi1, psi0) psi1/psi0</code>). See more information on specifying the <code>estimand_fun</code>
@@ -193,19 +194,21 @@ the <code>estimand_fun</code>.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Generate some data to showcase example</span></span></span>
 <span class="r-in"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100</span></span></span>
+<span class="r-in"><span><span class="va">exposure_prob</span> <span class="op">&lt;-</span> <span class="fl">.5</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">dat_gaus</span> <span class="op">&lt;-</span> <span class="fu"><a href="glm_data.html">glm_data</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">Y</span> <span class="op">~</span> <span class="fl">1</span><span class="op">+</span><span class="fl">1.5</span><span class="op">*</span><span class="va">X1</span><span class="op">+</span><span class="fl">2</span><span class="op">*</span><span class="va">A</span>,</span></span>
 <span class="r-in"><span>  X1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  A <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">1</span>, <span class="fl">.5</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  A <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">1</span>, <span class="va">exposure_prob</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">gaussian</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Fit the model</span></span></span>
 <span class="r-in"><span><span class="va">ate</span> <span class="op">&lt;-</span> <span class="fu">rctglm</span><span class="op">(</span>formula <span class="op">=</span> <span class="va">Y</span> <span class="op">~</span> <span class="va">.</span>,</span></span>
-<span class="r-in"><span>              group_indicator <span class="op">=</span> <span class="va">A</span>,</span></span>
+<span class="r-in"><span>              exposure_indicator <span class="op">=</span> <span class="va">A</span>,</span></span>
+<span class="r-in"><span>              exposure_prob <span class="op">=</span> <span class="va">exposure_prob</span>,</span></span>
 <span class="r-in"><span>              data <span class="op">=</span> <span class="va">dat_gaus</span>,</span></span>
 <span class="r-in"><span>              family <span class="op">=</span> <span class="va">gaussian</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Setting the group allocation probability `group_allocation_prob` as the mean of column `A` in data: 0.47</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Symbolic differentiation of estimand function</span> ──</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
@@ -219,22 +222,22 @@ the <code>estimand_fun</code>.</p>
 <span class="r-in"><span><span class="co"># Pull information on estimand</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="rctglm_methods.html">estimand</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Estimate Std. Error</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1.944331  0.1799062</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1.944331  0.1736738</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Another example with different family and specification of estimand_fun</span></span></span>
 <span class="r-in"><span><span class="va">dat_binom</span> <span class="op">&lt;-</span> <span class="fu"><a href="glm_data.html">glm_data</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">Y</span> <span class="op">~</span> <span class="fl">1</span><span class="op">+</span><span class="fl">1.5</span><span class="op">*</span><span class="va">X1</span><span class="op">+</span><span class="fl">2</span><span class="op">*</span><span class="va">A</span>,</span></span>
 <span class="r-in"><span>  X1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  A <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">1</span>, <span class="fl">.5</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  A <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">1</span>, <span class="va">exposure_prob</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">binomial</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">rr</span> <span class="op">&lt;-</span> <span class="fu">rctglm</span><span class="op">(</span>formula <span class="op">=</span> <span class="va">Y</span> <span class="op">~</span> <span class="va">.</span>,</span></span>
-<span class="r-in"><span>              group_indicator <span class="op">=</span> <span class="va">A</span>,</span></span>
+<span class="r-in"><span>              exposure_indicator <span class="op">=</span> <span class="va">A</span>,</span></span>
+<span class="r-in"><span>              exposure_prob <span class="op">=</span> <span class="va">exposure_prob</span>,</span></span>
 <span class="r-in"><span>              data <span class="op">=</span> <span class="va">dat_binom</span>,</span></span>
 <span class="r-in"><span>              family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">binomial</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>              estimand_fun <span class="op">=</span> <span class="st">"rate_ratio"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Setting the group allocation probability `group_allocation_prob` as the mean of column `A` in data: 0.55</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Symbolic differentiation of estimand function</span> ──</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
@@ -247,11 +250,11 @@ the <code>estimand_fun</code>.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">odds_ratio</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">psi1</span>, <span class="va">psi0</span><span class="op">)</span> <span class="op">(</span><span class="va">psi1</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">psi0</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">psi0</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">psi1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">or</span> <span class="op">&lt;-</span> <span class="fu">rctglm</span><span class="op">(</span>formula <span class="op">=</span> <span class="va">Y</span> <span class="op">~</span> <span class="va">.</span>,</span></span>
-<span class="r-in"><span>              group_indicator <span class="op">=</span> <span class="va">A</span>,</span></span>
+<span class="r-in"><span>              exposure_indicator <span class="op">=</span> <span class="va">A</span>,</span></span>
+<span class="r-in"><span>              exposure_prob <span class="op">=</span> <span class="va">exposure_prob</span>,</span></span>
 <span class="r-in"><span>              data <span class="op">=</span> <span class="va">dat_binom</span>,</span></span>
 <span class="r-in"><span>              family <span class="op">=</span> <span class="va">binomial</span>,</span></span>
 <span class="r-in"><span>              estimand_fun <span class="op">=</span> <span class="va">odds_ratio</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Setting the group allocation probability `group_allocation_prob` as the mean of column `A` in data: 0.55</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Symbolic differentiation of estimand function</span> ──</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>

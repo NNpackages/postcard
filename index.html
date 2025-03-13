@@ -85,7 +85,7 @@
 <span><span class="va">dat_treat</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/glm_data.html">glm_data</a></span><span class="op">(</span></span>
 <span>  <span class="va">Y</span> <span class="op">~</span> <span class="va">b0</span><span class="op">+</span><span class="va">b1</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="va">W</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">+</span><span class="va">b2</span><span class="op">*</span><span class="va">A</span>,</span>
 <span>  W <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">n</span>, min <span class="op">=</span> <span class="op">-</span><span class="fl">2</span>, max <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
-<span>  A <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">1</span>, <span class="fl">.5</span><span class="op">)</span>,</span>
+<span>  A <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span>,</span>
 <span>  family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">gaussian</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># Default value</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -116,7 +116,8 @@
 </blockquote>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ate</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rctglm.html">rctglm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">Y</span> <span class="op">~</span> <span class="va">A</span> <span class="op">*</span> <span class="va">W</span>,</span>
-<span>              group_indicator <span class="op">=</span> <span class="va">A</span>,</span>
+<span>              exposure_indicator <span class="op">=</span> <span class="va">A</span>,</span>
+<span>              exposure_prob <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span>,</span>
 <span>              data <span class="op">=</span> <span class="va">dat_treat</span>,</span>
 <span>              family <span class="op">=</span> <span class="st">"gaussian"</span><span class="op">)</span> <span class="co"># Default value</span></span></code></pre></div>
 <p>This creates an <code>rctglm</code> object which prints as</p>
@@ -125,13 +126,13 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Object of class rctglm </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Call:  rctglm(formula = Y ~ A * W, group_indicator = A, family = "gaussian", </span></span>
-<span><span class="co">#&gt;     data = dat_treat)</span></span>
+<span><span class="co">#&gt; Call:  rctglm(formula = Y ~ A * W, exposure_indicator = A, exposure_prob = 1/2, </span></span>
+<span><span class="co">#&gt;     family = "gaussian", data = dat_treat)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Counterfactual control mean (psi_0=E[Y|X, A=0]) estimate: 2.776</span></span>
 <span><span class="co">#&gt; Counterfactual control mean (psi_1=E[Y|X, A=1]) estimate: 4.867</span></span>
 <span><span class="co">#&gt; Estimand function r: psi1 - psi0</span></span>
-<span><span class="co">#&gt; Estimand (r(psi_1, psi_0)) estimate (SE): 2.091 (0.09236)</span></span></code></pre></div>
+<span><span class="co">#&gt; Estimand (r(psi_1, psi_0)) estimate (SE): 2.091 (0.09229)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="structure-of-rctglm-and-methods-for-extracting-entities">Structure of <code>rctglm</code> and methods for extracting entities<a class="anchor" aria-label="anchor" href="#structure-of-rctglm-and-methods-for-extracting-entities"></a>
@@ -168,7 +169,7 @@
 <code class="sourceCode R"><span><span class="co"># "estimate" also available as alternative to just "est"</span></span>
 <span><span class="fu"><a href="reference/rctglm_methods.html">est</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   Estimate Std. Error</span></span>
-<span><span class="co">#&gt; 1 2.091095 0.09235538</span></span>
+<span><span class="co">#&gt; 1 2.091095 0.09229488</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span>
 <span><span class="co">#&gt; (Intercept)           A           W         A:W </span></span>
 <span><span class="co">#&gt;  2.77585401  2.09122279  0.02364106  0.04961895</span></span></code></pre></div>
@@ -202,7 +203,8 @@
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ate_prog</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rctglm_with_prognosticscore.html">rctglm_with_prognosticscore</a></span><span class="op">(</span></span>
 <span>  formula <span class="op">=</span> <span class="va">Y</span> <span class="op">~</span> <span class="va">A</span> <span class="op">*</span> <span class="va">W</span>,</span>
-<span>  group_indicator <span class="op">=</span> <span class="va">A</span>,</span>
+<span>  exposure_indicator <span class="op">=</span> <span class="va">A</span>,</span>
+<span>  exposure_prob <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">dat_treat</span>,</span>
 <span>  family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">gaussian</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span>, <span class="co"># Default value</span></span>
 <span>  data_hist <span class="op">=</span> <span class="va">dat_notreat</span><span class="op">)</span></span></code></pre></div>
@@ -213,12 +215,13 @@
 <span><span class="co">#&gt; Object of class rctglm_prog </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Call:  rctglm_with_prognosticscore(formula = Y ~ A * W, family = gaussian(link = "identity"), </span></span>
-<span><span class="co">#&gt;     data = dat_treat, group_indicator = A, data_hist = dat_notreat)</span></span>
+<span><span class="co">#&gt;     data = dat_treat, exposure_indicator = A, exposure_prob = 1/2, </span></span>
+<span><span class="co">#&gt;     data_hist = dat_notreat)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Counterfactual control mean (psi_0=E[Y|X, A=0]) estimate: 2.824</span></span>
 <span><span class="co">#&gt; Counterfactual control mean (psi_1=E[Y|X, A=1]) estimate: 4.822</span></span>
 <span><span class="co">#&gt; Estimand function r: psi1 - psi0</span></span>
-<span><span class="co">#&gt; Estimand (r(psi_1, psi_0)) estimate (SE): 1.999 (0.0639)</span></span></code></pre></div>
+<span><span class="co">#&gt; Estimand (r(psi_1, psi_0)) estimate (SE): 1.999 (0.06393)</span></span></code></pre></div>
 <p>It’s evident that in this case where there is a non-linear relationship between the covariate we observe and the response, adjusting for the prognostic score reduces the standard error of our estimand approximation by quite a bit.</p>
 <div class="section level4">
 <h4 id="investigating-the-prognostic-model">Investigating the prognostic model<a class="anchor" aria-label="anchor" href="#investigating-the-prognostic-model"></a>
