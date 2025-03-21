@@ -11,7 +11,7 @@ covariates in randomisation groups."><link rel="stylesheet" href="https://cdn.js
 
     <a class="navbar-brand me-2" href="../index.html">PostCard</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -171,8 +171,6 @@ If <code>cv_variance</code> is <code>TRUE</code>, then the counterfactual predic
 used to calculate the value of the influence function) is obtained as out-of-sample (OOS) predictions
 using cross validation with number of folds specified by <code>cv_variance_folds</code>. The cross validation splits
 are performed using stratified sampling with <code>exposure_indicator</code> as the <code>strata</code> argument in <a href="https://rsample.tidymodels.org/reference/vfold_cv.html" class="external-link">rsample::vfold_cv</a>.</p>
-<p>This method of inference using plug-in estimation and influence functions for the variance produces a
-causal estimate of the estimand, as stated by articles XXXX.</p>
     </div>
     <div class="section level2">
     <h2 id="estimands">Estimands<a class="anchor" aria-label="anchor" href="#estimands"></a></h2>

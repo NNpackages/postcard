@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">PostCard</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,20 +36,49 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="postcard-development-version">PostCard (development version)<a class="anchor" aria-label="anchor" href="#postcard-development-version"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.2.1.9000" id="postcard-0219000-development-version">PostCard 0.2.1.9000 (development version)<a class="anchor" aria-label="anchor" href="#postcard-0219000-development-version"></a></h2>
+<p>Major overhaul of package. Still focuses on analysing data with the use of prognostic scores, but takes a more general approach that allows any distribution of response and covariates within the scope of generalised linear models (GLMs) and does not necessarily run on a number of data sets created by simulation.</p>
+<p>The package provides novel methods for:</p>
+<ul><li>
+<code>rctglm</code>: Finding any marginal effect estimand and estimating the standard error using influence functions to avoid inflation of type 1 error</li>
+<li>
+<code>rctglm_with_prognosticscore</code>: Do the above, but leveraging historical data to increase precision with prognostic scores.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.1" id="postcard-021">PostCard 0.2.1<a class="anchor" aria-label="anchor" href="#postcard-021"></a></h2>
 <div class="section level3">
-<h3 id="version-development-version-development-version">Version 1.0.0.9000 (development version)<a class="anchor" aria-label="anchor" href="#version-development-version-development-version"></a></h3>
-<p>Removed a lot of functionalities specific to simulation of data and added functionalities specific to prognostic covariate adjustment. This includes the addition of funcions: - rctglm - rctglm_with_prognosticscore - fit_best_learner</p>
+<h3 id="features-0-2-1">Features<a class="anchor" aria-label="anchor" href="#features-0-2-1"></a></h3>
+<ul><li>
+<p>Added function <code>simulate_collection</code> that takes function arguments for how to simulate covariates and model the outcome in the historical and “current” data to give the user full flexibility (previously a multivariate normal distribution was assumed)</p>
+<ul><li>
+<code>sim.lm</code> which simulates data from a multivariate normal distribution and models the outcome with a linear model is now a wrapper of the new - more general - <code>simulate_collection</code>.</li>
+</ul></li>
+</ul></div>
 </div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.0" id="postcard-020">PostCard 0.2.0<a class="anchor" aria-label="anchor" href="#postcard-020"></a></h2>
 <div class="section level3">
-<h3 id="version-development-version-development-version-1">Version 0.2.0.9000 (development version)<a class="anchor" aria-label="anchor" href="#version-development-version-development-version-1"></a></h3>
-<p>Added function <code>simulate_collection</code> that takes function arguments for how to simulate covariates and model the outcome in the historical and “current” data to give the user full flexibility.</p>
-<p><code>sim.lm</code> which simulates data from a multivariate normal distribution and models the outcome with a linear model is now a wrapper of <code>simulate_collection</code>.</p>
-</div>
+<h3 id="features-0-2-0">Features<a class="anchor" aria-label="anchor" href="#features-0-2-0"></a></h3>
+<ul><li><p>Added option to use sandwich HC estimators for the covariance matrix in <code>sim.lm</code></p></li>
+<li><p>Updated default value of <code>ATE_shift</code> in <code>sim.lm</code></p></li>
+</ul></div>
 <div class="section level3">
-<h3 id="version-development-version">Version 0.2.0<a class="anchor" aria-label="anchor" href="#version-development-version"></a></h3>
-<p>Package functions to simulate and analyse data for specific case of multivariate normal distribution of covariates and linear model of the outcome.</p>
+<h3 id="code-cleanup-0-2-0">Code cleanup<a class="anchor" aria-label="anchor" href="#code-cleanup-0-2-0"></a></h3>
+<ul><li><p>Modularised code. Fx. split <code>lm.hist</code> into <code>lm.procova</code> and <code>lm.psm</code></p></li>
+<li><p>Renamed some functionalities</p></li>
+<li><p>Correcting errors in documentation</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="best-practices-package-0-2-0">Best practices package<a class="anchor" aria-label="anchor" href="#best-practices-package-0-2-0"></a></h3>
+<ul><li><p>Updated DESCRIPTION</p></li>
+<li><p>Created README</p></li>
+<li><p>Added explicit package imports in form of <code>foo::xx</code></p></li>
+<li><p>Added a few tests</p></li>
+</ul></div>
 </div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.0" id="postcard-010">PostCard 0.1.0<a class="anchor" aria-label="anchor" href="#postcard-010"></a></h2>
+<p>Initial package created from local files. Package contains functionalities to create simulation study for a specific purpose related to an article. Functionalities include generation of a collection of data sets and a way to analyse these data sets assuming a special case of multivariate normal distribution of covariates with a linear model of the response. In addition, functionalities to estimate the power of certain parameter tests based on the results.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>

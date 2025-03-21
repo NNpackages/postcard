@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">PostCard</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -119,7 +119,7 @@ effect (ATE). However, it’s possible to specify any estimand.</p>
 character strings. As is apparent from the documentation of
 <code><a href="../reference/rctglm.html">rctglm()</a></code> and <code><a href="../reference/rctglm_with_prognosticscore.html">rctglm_with_prognosticscore()</a></code>,
 the default of <code>estimand_fun</code> is <code>"ate"</code>, and
-similarly the user can specify <code>estimand_fun = "ratio_ratio"</code>
+similarly the user can specify <code>estimand_fun = "rate_ratio"</code>
 to use the estimand function <code>psi1 / psi0</code> as seen below:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rate_ratio</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rctglm.html">rctglm</a></span><span class="op">(</span></span>
@@ -250,7 +250,7 @@ learners:</p>
 <span><span class="co">#&gt;             grid = data.frame(trees = seq(from = 25, to = 500, </span></span>
 <span><span class="co">#&gt;                 by = 25), tree_depth = 3)))</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x560d0cd96c50&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x563b51d98bb8&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:PostCard&gt;</span></span></code></pre></div>
 </div>
 <div class="section level5">
@@ -320,7 +320,7 @@ argument.</p>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 2 resampling: mod_rf (1.4s)</span></span></span>
 <span><span class="co">#&gt; <span style="color: #0000BB;">i</span>  <span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span></span>
 <span><span class="co">#&gt; <span style="color: #0000BB;">i</span> <span style="color: #000000;">2 of 2 resampling: mod_svm.linear</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 2 resampling: mod_svm.linear (109ms)</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 2 resampling: mod_svm.linear (116ms)</span></span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Model with lowest RMSE: mod_svm.linear</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Investigate trained learners and fitted model in `prognostic_info` list element</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -357,7 +357,7 @@ validation</li>
 <code class="sourceCode R"><span><span class="va">model_own_learners</span><span class="op">$</span><span class="va">prognostic_info</span></span>
 <span><span class="co">#&gt; $formula</span></span>
 <span><span class="co">#&gt; Y ~ .</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x560d0c5dfad0&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: 0x563b51674e60&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $model_fit</span></span>
 <span><span class="co">#&gt; ══ Workflow [trained] ══════════════════════════════════════════════════════════</span></span>
