@@ -22,7 +22,8 @@ covariates in randomisation groups."><link rel="stylesheet" href="https://cdn.js
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/more-details.html">More details on usage of package</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/model-fit.html">Controlling behavior of model fitting functions</a></li>
+    <li><a class="dropdown-item" href="../articles/prospective-power.html">Prospective Power Estimation</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -96,11 +97,10 @@ As a default, the ratio of 1's in data is used.</p></dd>
 
 
 <dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
-<dd><p>an optional data frame, list or environment (or object
-    coercible by <code><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></code> to a data frame) containing
-    the variables in the model.  If not found in <code>data</code>, the
-    variables are taken from <code>environment(formula)</code>,
-    typically the environment from which <code>glm</code> is called.</p></dd>
+<dd><p>an optional data frame, list or environment (or object coercible
+by as.data.frame to a data frame) containing the variables in the model. If
+not found in data, the variables are taken from environment(formula), typically
+the environment from which the function is called.</p></dd>
 
 
 <dt id="arg-estimand-fun">estimand_fun<a class="anchor" aria-label="anchor" href="#arg-estimand-fun"></a></dt>
@@ -183,7 +183,7 @@ a fitted GLM in the binary groups defined by <code>exposure_indicator</code>.</p
 <code>function(psi1, psi0) psi1/psi0</code>). See more information on specifying the <code>estimand_fun</code>
 in section
 <a href="https://nnpackages.github.io/PostCard/articles/more-details.html#specifying-any-estimand">Specifying any estimand</a>
-in the vignette <code><a href="../articles/more-details.html">vignette("more-details")</a></code>.</p>
+in the vignette <code>vignette("more-details")</code>.</p>
 <p>As a default, the <code>Deriv</code> package is used to perform symbolic differentiation to find the derivatives of
 the <code>estimand_fun</code>.</p>
     </div>
@@ -220,7 +220,7 @@ the <code>estimand_fun</code>.</p>
 <span class="r-in"><span><span class="co"># Pull information on estimand</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="rctglm_methods.html">estimand</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Estimate Std. Error</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2.289558  0.1982931</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1.973737  0.1906332</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Another example with different family and specification of estimand_fun</span></span></span>
 <span class="r-in"><span><span class="va">dat_binom</span> <span class="op">&lt;-</span> <span class="fu"><a href="glm_data.html">glm_data</a></span><span class="op">(</span></span></span>

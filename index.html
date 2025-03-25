@@ -37,7 +37,8 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="articles/more-details.html">More details on usage of package</a></li>
+<li><a class="dropdown-item" href="articles/model-fit.html">Controlling behavior of model fitting functions</a></li>
+    <li><a class="dropdown-item" href="articles/prospective-power.html">Prospective Power Estimation</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
@@ -112,7 +113,7 @@
 </ul>
 <p>Thus, we can estimate the ATE by simply writing the below:</p>
 <blockquote>
-<p>Note that as a default, information about the algorithm is printed in the console, but here we suppress this behavior. See more in <code><a href="articles/more-details.html">vignette("more-details")</a></code>.</p>
+<p>Note that as a default, information about the algorithm is printed in the console, but here we suppress this behavior. See more in <code>vignette("more-details")</code>.</p>
 </blockquote>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ate</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rctglm.html">rctglm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">Y</span> <span class="op">~</span> <span class="va">A</span> <span class="op">*</span> <span class="va">W</span>,</span>

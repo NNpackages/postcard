@@ -20,7 +20,8 @@ details for more information on each method."><link rel="stylesheet" href="https
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/more-details.html">More details on usage of package</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/model-fit.html">Controlling behavior of model fitting functions</a></li>
+    <li><a class="dropdown-item" href="../articles/prospective-power.html">Prospective Power Estimation</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -126,16 +127,16 @@ shortcuts to running <code>coef(x$glm)</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call:  rctglm(formula = Y ~ ., exposure_indicator = A, exposure_prob = exposure_prob, </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     family = binomial, data = dat_binom, estimand_fun = "ate")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Counterfactual control mean (psi_0=E[Y|X, A=0]) estimate: 0.6977</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Counterfactual control mean (psi_1=E[Y|X, A=1]) estimate: 0.9403</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Counterfactual control mean (psi_0=E[Y|X, A=0]) estimate: 0.6762</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Counterfactual control mean (psi_1=E[Y|X, A=1]) estimate: 0.9097</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimand function r: psi1 - psi0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Estimand (r(psi_1, psi_0)) estimate (SE): 0.2426 (0.06811)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimand (r(psi_1, psi_0)) estimate (SE): 0.2335 (0.076)</span>
 <span class="r-in"><span><span class="fu">estimand</span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Estimate Std. Error</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.2426473 0.06810969</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.2334771 0.07600023</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)          X1           A </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1.099633    1.422773    2.338221 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.8528778   1.0275222   1.7464931 </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
