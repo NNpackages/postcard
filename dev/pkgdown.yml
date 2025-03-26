@@ -1,0 +1,11 @@
+pandoc: 3.1.11
+pkgdown: 2.1.1
+pkgdown_sha: ~
+articles:
+  model-fit: model-fit.html
+  PostCard: PostCard.html
+  prospective-power: prospective-power.html
+last_built: 2025-03-26T06:11Z
+urls:
+  reference: https://nnpackages.github.io/PostCard/reference
+  article: https://nnpackages.github.io/PostCard/articles
