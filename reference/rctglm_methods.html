@@ -17,7 +17,8 @@ details for more information on each method."><link rel="stylesheet" href="https
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/PostCard.html">Get started</a></li>
+<li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/model-fit.html">Controlling behavior of model fitting functions</a></li>
@@ -82,13 +83,11 @@ details for more information on each method.</p>
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p><code>estimand</code> and short-hand form <code>est</code> are methods for extracting the estimated
-estimand value as well as the standard error (SE) and variance of the estimand.
-These functions are a shortcut to extract the list element <code>estimand</code>
-of an <code>rctglm</code> class object.</p>
-<p><code>coef</code> just use the corresponding <code>glm</code> methods on the <code>glm</code>
-fit contained within the <code>rctglm</code> object. Thus, this function is a
-shortcuts to running <code>coef(x$glm)</code>.</p>
+    <p>The function estimand (or short-hand version est) can be used to extract
+a <code>data.frame</code> with an estimated value and standard error of the estimand.</p>
+<p>A method for the generic <a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a> has been added for <code>rctglm</code>
+(i.e., coef.rctglm), which uses the method <code>coef.glm</code> to extract coefficient
+information from the underlying <code>glm</code> fit in the procedure.</p>
     </div>
 
     <div class="section level2">
@@ -125,7 +124,7 @@ shortcuts to running <code>coef(x$glm)</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class rctglm </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call:  rctglm(formula = Y ~ ., exposure_indicator = A, exposure_prob = exposure_prob, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     family = binomial, data = dat_binom, estimand_fun = "ate")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     data = dat_binom, family = binomial, estimand_fun = "ate")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Counterfactual control mean (psi_0=E[Y|X, A=0]) estimate: 0.6762</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Counterfactual control mean (psi_1=E[Y|X, A=1]) estimate: 0.9097</span>

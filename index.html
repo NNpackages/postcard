@@ -33,6 +33,7 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="articles/PostCard.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
@@ -59,192 +60,30 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>PostCard is a package for PrOgnoSTic CovARiate aDjustment in randomised clinical trials. At the time of writing, the package features convenient functions for conducting analysis using prognostic covariate adjustment for GLMs. Let <span class="math inline">$\Psi_a=\E[Y(a)]$</span> be the population mean outcome under treatment <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mn>0</mn><mo>,</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a=0, 1</annotation></semantics></math>, sometimes referred to as <em>counterfactual means</em>. We are interested in marginal effects, which are causal effects of the form <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>Ψ</mi><mn>1</mn></msub><mo>,</mo><msub><mi>Ψ</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">r(\Psi_1, \Psi_0)</annotation></semantics></math>. The package uses plug-in estimation for robust estimation of a marginal effect estimand and (CV) influence functions for robust estimation of the variance of the estimand (Rosenblum, M. and M. J. van der Laan, 2010: Simple, efficient estimators of treatment effects in randomized trials using generalized linear models to leverage baseline variables. The International Journal of Biostatistics, 6, no. 1).</p>
+<p>PostCard provides tools for accurately estimating marginal effects using GLMs, including increasing precision using prognostic covariate adjustment.</p>
+<div class="section level3">
+<h3 id="marginal-effects">Marginal effects<a class="anchor" aria-label="anchor" href="#marginal-effects"></a>
+</h3>
+<p><strong>Marginal effects</strong> are causal effects of the form <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>Ψ</mi><mn>1</mn></msub><mo>,</mo><msub><mi>Ψ</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">r(\Psi_1, \Psi_0)</annotation></semantics></math>, where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Ψ</mi><mi>a</mi></msub><mo>=</mo><mi>𝔼</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>Y</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">\Psi_a=\mathbb{E}[Y(a)]</annotation></semantics></math> are population mean outcomes under exposure <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mn>0</mn><mo>,</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a=0, 1</annotation></semantics></math>, respectively. These are sometimes referred to as <em>counterfactual means</em>. The package uses <strong>plug-in estimation for robust estimation of any marginal effect estimand</strong> as well as <strong>influence functions for robust estimation of the variance of the estimand</strong> (Rosenblum, M. and M. J. van der Laan, 2010: Simple, efficient estimators of treatment effects in randomized trials using generalized linear models to leverage baseline variables. The International Journal of Biostatistics, 6, no. 1).</p>
+<p><code><a href="reference/rctglm.html">rctglm()</a></code> is used to estimate marginal effects with the method described above. See introductory examples of its usage in <code><a href="articles/PostCard.html">vignette("PostCard")</a></code> and more details in <code><a href="articles/model-fit.html">vignette("model-fit")</a></code>.</p>
+</div>
+<div class="section level3">
+<h3 id="prognostic-covariate-adjustment">Prognostic covariate adjustment<a class="anchor" aria-label="anchor" href="#prognostic-covariate-adjustment"></a>
+</h3>
+<p><strong>Prognostic covariate adjustment</strong> involves training a <em>prognostic model</em> on historical data to predict the response in that data. Assuming that the historical data is representative of the comparator group in a <em>“new”</em> data set, we can use the prognostic model to predict the <em>comparator counterfactual outcome</em> for all observations (including the ones in the comparator group). This prediction, which is called the <strong>prognostic score</strong> is then used as an adjustment covariate in the GLM.</p>
+<p><code><a href="reference/rctglm_with_prognosticscore.html">rctglm_with_prognosticscore()</a></code> is used to estimate marginal effects including the use of prognostic covariate adjustment. See introductory examples of its usage in <code><a href="articles/PostCard.html">vignette("PostCard")</a></code> and more details in <code><a href="articles/model-fit.html">vignette("model-fit")</a></code>.</p>
+</div>
+<div class="section level2">
+<h2 id="power-approximation-for-linear-models">Power approximation for linear models<a class="anchor" aria-label="anchor" href="#power-approximation-for-linear-models"></a>
+</h2>
+<p>Additionally, implementations of sample size/power approximation formulas are available, enabling retrospective power analyses to be performed using the package. Functionalities are available at the help page <code><a href="reference/powerss.html">powerss()</a></code>, introductory examples in <code><a href="articles/PostCard.html">vignette("PostCard")</a></code> and more details in <code>vignette("retrospective-power")</code>.</p>
+</div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of PostCard from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<p>You can install the development version of PostCard from GitHub with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"NNpackages/PostCard"</span><span class="op">)</span></span></code></pre></div>
-<p>Setup-chunk to load the package, set a seed and turn off verbosity for the rendering of the README.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://nnpackages.github.io/PostCard/">PostCard</a></span><span class="op">)</span></span>
-<span><span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="https://withr.r-lib.org/reference/with_seed.html" class="external-link">local_seed</a></span><span class="op">(</span><span class="fl">1395878</span><span class="op">)</span></span>
-<span><span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="https://withr.r-lib.org/reference/with_options.html" class="external-link">local_options</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>PostCard.verbose <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="simulating-data-for-exploratory-analyses">Simulating data for exploratory analyses<a class="anchor" aria-label="anchor" href="#simulating-data-for-exploratory-analyses"></a>
-</h2>
-<p>First, we simulate some data to be able to enable showcasing of the functionalities. For this we use the <code><a href="reference/glm_data.html">glm_data()</a></code> function from the package, where the user can specify an expression alongside variables and a family of the response to then simulate a response from a GLM with linear predictor given by the expression provided.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
-<span><span class="va">b0</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
-<span><span class="va">b1</span> <span class="op">&lt;-</span> <span class="fl">3</span></span>
-<span><span class="va">b2</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
-<span></span>
-<span><span class="co"># Simulate data with a non-linear effect</span></span>
-<span><span class="va">dat_treat</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/glm_data.html">glm_data</a></span><span class="op">(</span></span>
-<span>  <span class="va">Y</span> <span class="op">~</span> <span class="va">b0</span><span class="op">+</span><span class="va">b1</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="va">W</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">+</span><span class="va">b2</span><span class="op">*</span><span class="va">A</span>,</span>
-<span>  W <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">n</span>, min <span class="op">=</span> <span class="op">-</span><span class="fl">2</span>, max <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
-<span>  A <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span>,</span>
-<span>  family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">gaussian</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># Default value</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="plug-in-estimation-of-marginal-effects-and-variance-estimation-using-influence-functions">Plug-in estimation of marginal effects and variance estimation using influence functions<a class="anchor" aria-label="anchor" href="#plug-in-estimation-of-marginal-effects-and-variance-estimation-using-influence-functions"></a>
-</h2>
-<div class="section level3">
-<h3 id="fitting-rctglm-without-prognostic-covariate-adjustment">Fitting <code>rctglm()</code> without prognostic covariate adjustment<a class="anchor" aria-label="anchor" href="#fitting-rctglm-without-prognostic-covariate-adjustment"></a>
-</h3>
-<p>The <code><a href="reference/rctglm.html">rctglm()</a></code> function estimates any specified estimand using plug-in estimation for randomised clinical trials and estimates the variance using the influence function of the marginal effect estimand.</p>
-<p>The interface of <code><a href="reference/rctglm.html">rctglm()</a></code> is similar to that of the <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">stats::glm()</a></code> function but with an added mandatory specification of</p>
-<ul>
-<li>The randomisation variable in data, usually being the (name of) the treatment variable</li>
-<li>The randomisation ratio - the probability of being allocated to group 1 (rather than 0)
-<ul>
-<li>As a default, a ratio of 1’s in data is used</li>
-</ul>
-</li>
-<li>An estimand function
-<ul>
-<li>As a default, the function takes the average treatment effect (ATE) as the estimand</li>
-</ul>
-</li>
-</ul>
-<p>Thus, we can estimate the ATE by simply writing the below:</p>
-<blockquote>
-<p>Note that as a default, information about the algorithm is printed in the console, but here we suppress this behavior. See more in <code>vignette("more-details")</code>.</p>
-</blockquote>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ate</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rctglm.html">rctglm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">Y</span> <span class="op">~</span> <span class="va">A</span> <span class="op">*</span> <span class="va">W</span>,</span>
-<span>              exposure_indicator <span class="op">=</span> <span class="va">A</span>,</span>
-<span>              exposure_prob <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span>,</span>
-<span>              data <span class="op">=</span> <span class="va">dat_treat</span>,</span>
-<span>              family <span class="op">=</span> <span class="st">"gaussian"</span><span class="op">)</span> <span class="co"># Default value</span></span></code></pre></div>
-<p>This creates an <code>rctglm</code> object which prints as</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ate</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Object of class rctglm </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Call:  rctglm(formula = Y ~ A * W, exposure_indicator = A, exposure_prob = 1/2, </span></span>
-<span><span class="co">#&gt;     family = "gaussian", data = dat_treat)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Counterfactual control mean (psi_0=E[Y|X, A=0]) estimate: 2.776</span></span>
-<span><span class="co">#&gt; Counterfactual control mean (psi_1=E[Y|X, A=1]) estimate: 4.867</span></span>
-<span><span class="co">#&gt; Estimand function r: psi1 - psi0</span></span>
-<span><span class="co">#&gt; Estimand (r(psi_1, psi_0)) estimate (SE): 2.091 (0.09229)</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="structure-of-rctglm-and-methods-for-extracting-entities">Structure of <code>rctglm</code> and methods for extracting entities<a class="anchor" aria-label="anchor" href="#structure-of-rctglm-and-methods-for-extracting-entities"></a>
-</h3>
-<p>The <code>print</code> method for the <code>rctglm</code> class specifies the way to print such an object as seen above. Behind the S3 class of <code>rctglm</code> it is a list with</p>
-<ul>
-<li>Estimand related information
-<ul>
-<li>A <code>data.frame</code> of plug-in estimate of estimand, standard error (SE) estimate and variance estimate of estimand
-<ul>
-<li>Accessible through <code>ate$estimand</code> or using methods <code>estimand(ate)</code> and <code>est(ate)</code>
-</li>
-</ul>
-</li>
-<li>Counterfactual predictions (for each observation) and counterfactual means for both groups
-<ul>
-<li>Accessible through <code>ate$counterfactual_mean&lt;0/1&gt;</code> and <code>ate$counterfactual_pred&lt;0/1&gt;</code>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Information on the underlying <code>glm</code> fit
-<ul>
-<li>Entire <code>glm</code> object available through <code>ate$glm</code>
-</li>
-<li>Method <code>coef</code> uses the corresponding method on the <code>glm</code> object contained within <code>rctglm</code>
-</li>
-</ul>
-</li>
-</ul>
-<p>Thus, methods available are:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># "estimate" also available as alternative to just "est"</span></span>
-<span><span class="fu"><a href="reference/rctglm_methods.html">est</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Estimate Std. Error</span></span>
-<span><span class="co">#&gt; 1 2.091095 0.09229488</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span>
-<span><span class="co">#&gt; (Intercept)           A           W         A:W </span></span>
-<span><span class="co">#&gt;  2.77585401  2.09122279  0.02364106  0.04961895</span></span></code></pre></div>
-<p>See more info in the documentation page <code><a href="reference/rctglm_methods.html">rctglm_methods()</a></code>.</p>
-</div>
-<div class="section level3">
-<h3 id="using-prognostic-covariate-adjustment">Using prognostic covariate adjustment<a class="anchor" aria-label="anchor" href="#using-prognostic-covariate-adjustment"></a>
-</h3>
-<p>The <code><a href="reference/rctglm_with_prognosticscore.html">rctglm_with_prognosticscore()</a></code> function uses the <code><a href="reference/fit_best_learner.html">fit_best_learner()</a></code> function to fit a prognostic model to historical data and then uses the prognostic model to predict</p>
-<p>for all observations in the current data set. These <em>prognostic scores</em> are then used as a covariate in the GLM when running <code><a href="reference/rctglm.html">rctglm()</a></code>.</p>
-<p>Allowing the use of complex non-linear models to create such a prognostic score allows utilising information from potentially many variables, “catching” non-linear relationships and then using all this information in the GLM model using a single covariate adjustment.</p>
-<p>We simulate some historical data to showcase the use of this function as well:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dat_notreat</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/glm_data.html">glm_data</a></span><span class="op">(</span></span>
-<span>  <span class="va">Y</span> <span class="op">~</span> <span class="va">b0</span><span class="op">+</span><span class="va">b1</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">sin</a></span><span class="op">(</span><span class="va">W</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>,</span>
-<span>  W <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">n</span>, min <span class="op">=</span> <span class="op">-</span><span class="fl">2</span>, max <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
-<span>  family <span class="op">=</span> <span class="va">gaussian</span> <span class="co"># Default value</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p>The call to <code><a href="reference/rctglm_with_prognosticscore.html">rctglm_with_prognosticscore()</a></code> is the same as to <code><a href="reference/rctglm.html">rctglm()</a></code> but with an added specification of</p>
-<ul>
-<li>(Historical) data to fit the prognostic model using <code><a href="reference/fit_best_learner.html">fit_best_learner()</a></code>
-</li>
-<li>A formula used when fitting the prognostic model
-<ul>
-<li>Default uses all covariates in the data.</li>
-</ul>
-</li>
-<li>(Optionally) number folds in cross validation and a list of learners for fitting the best learner</li>
-</ul>
-<p>Thus, a simple call which estimates the average treatment effect, adjusting for a prognostic score, is seen below:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ate_prog</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rctglm_with_prognosticscore.html">rctglm_with_prognosticscore</a></span><span class="op">(</span></span>
-<span>  formula <span class="op">=</span> <span class="va">Y</span> <span class="op">~</span> <span class="va">A</span> <span class="op">*</span> <span class="va">W</span>,</span>
-<span>  exposure_indicator <span class="op">=</span> <span class="va">A</span>,</span>
-<span>  exposure_prob <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span>,</span>
-<span>  data <span class="op">=</span> <span class="va">dat_treat</span>,</span>
-<span>  family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">gaussian</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span>, <span class="co"># Default value</span></span>
-<span>  data_hist <span class="op">=</span> <span class="va">dat_notreat</span><span class="op">)</span></span></code></pre></div>
-<p>Quick results of the fit can be seen by printing the object:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ate_prog</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Object of class rctglm_prog </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Call:  rctglm_with_prognosticscore(formula = Y ~ A * W, family = gaussian(link = "identity"), </span></span>
-<span><span class="co">#&gt;     data = dat_treat, exposure_indicator = A, exposure_prob = 1/2, </span></span>
-<span><span class="co">#&gt;     data_hist = dat_notreat)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Counterfactual control mean (psi_0=E[Y|X, A=0]) estimate: 2.824</span></span>
-<span><span class="co">#&gt; Counterfactual control mean (psi_1=E[Y|X, A=1]) estimate: 4.822</span></span>
-<span><span class="co">#&gt; Estimand function r: psi1 - psi0</span></span>
-<span><span class="co">#&gt; Estimand (r(psi_1, psi_0)) estimate (SE): 1.999 (0.06393)</span></span></code></pre></div>
-<p>It’s evident that in this case where there is a non-linear relationship between the covariate we observe and the response, adjusting for the prognostic score reduces the standard error of our estimand approximation by quite a bit.</p>
-<div class="section level4">
-<h4 id="investigating-the-prognostic-model">Investigating the prognostic model<a class="anchor" aria-label="anchor" href="#investigating-the-prognostic-model"></a>
-</h4>
-<p>Information on the prognostic model is available in the list element <code>prognostic_info</code> of the resulting object. This contains</p>
-<ul>
-<li>The fitted prognostic model as a <code>workflow</code>
-<ul>
-<li>Accessible through <code>ate$prognostic_info$model_fit</code> or with method <code>prog_model(ate)</code>
-</li>
-</ul>
-</li>
-<li>A list of the learners used for fitting the model using <code><a href="reference/fit_best_learner.html">fit_best_learner()</a></code>
-<ul>
-<li>Accessible through <code>ate$prognostic_info$learners</code>
-</li>
-</ul>
-</li>
-<li>The number of folds used for cross validation (<code>cv_prog_folds</code>) and the historical data used for fitting the model</li>
-</ul>
-</div>
-</div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="license">
