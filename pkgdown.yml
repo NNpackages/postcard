@@ -3,9 +3,9 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   model-fit: model-fit.html
-  PostCard: PostCard.html
+  postcard: postcard.html
   prospective-power: prospective-power.html
-last_built: 2025-03-28T04:08Z
+last_built: 2025-03-28T04:17Z
 urls:
   reference: https://nnpackages.github.io/postcard/reference
   article: https://nnpackages.github.io/postcard/articles
