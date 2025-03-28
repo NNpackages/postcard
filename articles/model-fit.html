@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Controlling behavior of model fitting functions • PostCard</title>
+<title>Controlling behavior of model fitting functions • postcard</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -18,7 +18,7 @@
 
     <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
-    <a class="navbar-brand me-2" href="../index.html">PostCard</a>
+    <a class="navbar-brand me-2" href="../index.html">postcard</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
 
@@ -29,12 +29,12 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="../articles/PostCard.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/model-fit.html">Controlling behavior of model fitting functions</a></li>
+    <li><a class="dropdown-item" href="../articles/PostCard.html">Introduction to postcard</a></li>
     <li><a class="dropdown-item" href="../articles/prospective-power.html">Prospective Power Estimation</a></li>
   </ul>
 </li>
@@ -67,19 +67,19 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://nnpackages.github.io/PostCard/">PostCard</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://nnpackages.github.io/postcard/">postcard</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span></span>
 <span><span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="https://withr.r-lib.org/reference/with_seed.html" class="external-link">local_seed</a></span><span class="op">(</span><span class="fl">1395878</span><span class="op">)</span></span>
-<span><span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="https://withr.r-lib.org/reference/with_options.html" class="external-link">local_options</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>PostCard.verbose <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="https://withr.r-lib.org/reference/with_options.html" class="external-link">local_options</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>postcard.verbose <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>For introductory examples on how to use the package, see
-<code><a href="../articles/PostCard.html">vignette("PostCard")</a></code>.</p>
+<code>vignette("postcard")</code>.</p>
 <p>In this vignette, we will explain how to alter the default behavior
 of the model fitting functions <code><a href="../reference/rctglm.html">rctglm()</a></code> and
 <code><a href="../reference/rctglm_with_prognosticscore.html">rctglm_with_prognosticscore()</a></code>.</p>
 <div class="section level3">
 <h3 id="generating-some-data-to-run-examples">Generating some data to run examples<a class="anchor" aria-label="anchor" href="#generating-some-data-to-run-examples"></a>
 </h3>
-<p>As in <code><a href="../articles/PostCard.html">vignette("PostCard")</a></code>, we simulate data using the
+<p>As in <code>vignette("postcard")</code>, we simulate data using the
 <code><a href="../reference/glm_data.html">glm_data()</a></code> function from the package.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
@@ -152,10 +152,10 @@ specifications of verbosity.</p>
 <span><span class="co">#&gt; • mod_gbt</span></span>
 <span><span class="co">#&gt; <span style="color: #0000BB;">i</span>  <span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span></span>
 <span><span class="co">#&gt; <span style="color: #0000BB;">i</span> <span style="color: #000000;">1 of 3 resampling: mod_mars</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 3 resampling: mod_mars (188ms)</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 3 resampling: mod_mars (192ms)</span></span></span>
 <span><span class="co">#&gt; <span style="color: #0000BB;">i</span>  <span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span></span>
 <span><span class="co">#&gt; <span style="color: #0000BB;">i</span> <span style="color: #000000;">2 of 3 resampling: mod_lm</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 3 resampling: mod_lm (92ms)</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 3 resampling: mod_lm (94ms)</span></span></span>
 <span><span class="co">#&gt; <span style="color: #0000BB;">i</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt</span></span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt (1.3s)</span></span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Model with lowest RMSE: mod_mars</span></span>
@@ -226,7 +226,7 @@ specifications of verbosity.</p>
 <span>  verbose <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 <blockquote>
 <p>Verbosity is suppressed in the rest of the vignette by setting option
-<code>PostCard.verbose</code> to <code>0</code>.</p>
+<code>postcard.verbose</code> to <code>0</code>.</p>
 </blockquote>
 </div>
 <div class="section level2">
@@ -281,18 +281,18 @@ to use the estimand function <code>psi1 / psi0</code> as seen below:</p>
 <span><span class="co">#&gt; $f</span></span>
 <span><span class="co">#&gt; function (psi1, psi0) </span></span>
 <span><span class="co">#&gt; psi1/psi0</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55b049d254a8&gt;</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x55b059c7e778&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x557617691518&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: 0x5576275e0248&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $d0</span></span>
 <span><span class="co">#&gt; function (psi1, psi0) </span></span>
 <span><span class="co">#&gt; -(psi1/psi0^2)</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x55b059c7e778&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: 0x5576275e0248&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $d1</span></span>
 <span><span class="co">#&gt; function (psi1, psi0) </span></span>
 <span><span class="co">#&gt; 1/psi0</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x55b059c7e778&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; &lt;environment: 0x5576275e0248&gt;</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="specifying-any-estimand">Specifying any estimand<a class="anchor" aria-label="anchor" href="#specifying-any-estimand"></a>
@@ -390,7 +390,7 @@ learners that are used in <code><a href="../reference/fit_best_learner.html">fit
 the <code>learners</code> argument.</p>
 </blockquote>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">PostCard</span><span class="fu">:::</span><span class="va">default_learners</span></span>
+<code class="sourceCode R"><span><span class="fu">postcard</span><span class="fu">:::</span><span class="va">default_learners</span></span>
 <span><span class="co">#&gt; function () </span></span>
 <span><span class="co">#&gt; {</span></span>
 <span><span class="co">#&gt;     list(mars = list(model = parsnip::mars(mode = "regression", </span></span>
@@ -402,8 +402,8 @@ the <code>learners</code> argument.</p>
 <span><span class="co">#&gt;             grid = data.frame(trees = seq(from = 25, to = 500, </span></span>
 <span><span class="co">#&gt;                 by = 25), tree_depth = 3)))</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x55b04b84f178&gt;</span></span>
-<span><span class="co">#&gt; &lt;environment: namespace:PostCard&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; &lt;bytecode: 0x5576191bec18&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: namespace:postcard&gt;</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="creating-own-list-of-learners">Creating own list of learners<a class="anchor" aria-label="anchor" href="#creating-own-list-of-learners"></a>
@@ -486,7 +486,7 @@ not take up too much space when printing in the vignette.</p>
 <span><span class="va">prog_info</span></span>
 <span><span class="co">#&gt; $formula</span></span>
 <span><span class="co">#&gt; Y ~ .</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x55b04fe67068&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: 0x55761d7e8dc8&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $model_fit</span></span>
 <span><span class="co">#&gt; ══ Workflow [trained] ══════════════════════════════════════════════════════════</span></span>
