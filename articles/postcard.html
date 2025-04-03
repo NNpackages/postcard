@@ -72,6 +72,11 @@ for the rendering of the vignette.</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://nnpackages.github.io/postcard/">postcard</a></span><span class="op">)</span></span>
 <span><span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="https://withr.r-lib.org/reference/with_seed.html" class="external-link">local_seed</a></span><span class="op">(</span><span class="fl">1395878</span><span class="op">)</span></span>
 <span><span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="https://withr.r-lib.org/reference/with_options.html" class="external-link">local_options</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>postcard.verbose <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>postcard provides tools for accurately estimating marginal effects
+using plug-in estimation with GLMs, including increasing precision using
+prognostic covariate adjustment. See <a href="https://arxiv.org/abs/2503.22284" class="external-link">Powering RCTs for marginal
+effects with GLMs using prognostic score adjustment</a> by
+Højbjerre-Frandsen et. al (2025).</p>
 <div class="section level2">
 <h2 id="plug-in-estimation-of-marginal-effects-and-variance-estimation-using-influence-functions">Plug-in estimation of marginal effects and variance estimation using
 influence functions<a class="anchor" aria-label="anchor" href="#plug-in-estimation-of-marginal-effects-and-variance-estimation-using-influence-functions"></a>

@@ -127,7 +127,7 @@ for prediction to construct our prognostic scores.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lrnr</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_best_learner.html">fit_best_learner</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">data_train</span>,</span>
-<span>  formula <span class="op">=</span> <span class="va">Y</span> <span class="op">~</span> <span class="va">.</span>,</span>
+<span>  preproc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mod <span class="op">=</span> <span class="va">Y</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span>,</span>
 <span>  cv_folds <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="fl">0</span></span>
 <span><span class="op">)</span></span>

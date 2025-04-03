@@ -152,10 +152,10 @@ specifications of verbosity.</p>
 <span><span class="co">#&gt; • mod_gbt</span></span>
 <span><span class="co">#&gt; <span style="color: #0000BB;">i</span>  <span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span></span>
 <span><span class="co">#&gt; <span style="color: #0000BB;">i</span> <span style="color: #000000;">1 of 3 resampling: mod_mars</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 3 resampling: mod_mars (188ms)</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 3 resampling: mod_mars (202ms)</span></span></span>
 <span><span class="co">#&gt; <span style="color: #0000BB;">i</span>  <span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span></span>
 <span><span class="co">#&gt; <span style="color: #0000BB;">i</span> <span style="color: #000000;">2 of 3 resampling: mod_lm</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 3 resampling: mod_lm (93ms)</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 3 resampling: mod_lm (103ms)</span></span></span>
 <span><span class="co">#&gt; <span style="color: #0000BB;">i</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt</span></span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt (1.3s)</span></span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Model with lowest RMSE: mod_mars</span></span>
@@ -281,18 +281,18 @@ to use the estimand function <code>psi1 / psi0</code> as seen below:</p>
 <span><span class="co">#&gt; $f</span></span>
 <span><span class="co">#&gt; function (psi1, psi0) </span></span>
 <span><span class="co">#&gt; psi1/psi0</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x5618bd175f90&gt;</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x5618cd018250&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55e1b807b4a8&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: 0x55e1c7b5ec68&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $d0</span></span>
 <span><span class="co">#&gt; function (psi1, psi0) </span></span>
 <span><span class="co">#&gt; -(psi1/psi0^2)</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x5618cd018250&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: 0x55e1c7b5ec68&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $d1</span></span>
 <span><span class="co">#&gt; function (psi1, psi0) </span></span>
 <span><span class="co">#&gt; 1/psi0</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x5618cd018250&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; &lt;environment: 0x55e1c7b5ec68&gt;</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="specifying-any-estimand">Specifying any estimand<a class="anchor" aria-label="anchor" href="#specifying-any-estimand"></a>
@@ -390,19 +390,18 @@ learners that are used in <code><a href="../reference/fit_best_learner.html">fit
 the <code>learners</code> argument.</p>
 </blockquote>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">postcard</span><span class="fu">:::</span><span class="va">default_learners</span></span>
+<code class="sourceCode R"><span><span class="fu">postcard</span><span class="fu">:::</span><span class="va"><a href="../reference/default_learners.html">default_learners</a></span></span>
 <span><span class="co">#&gt; function () </span></span>
 <span><span class="co">#&gt; {</span></span>
 <span><span class="co">#&gt;     list(mars = list(model = parsnip::mars(mode = "regression", </span></span>
-<span><span class="co">#&gt;         prod_degree = 3) %&gt;% parsnip::set_engine("earth"), grid = NULL), </span></span>
-<span><span class="co">#&gt;         lm = list(model = parsnip::linear_reg() %&gt;% parsnip::set_engine("lm"), </span></span>
-<span><span class="co">#&gt;             grid = NULL), gbt = list(model = parsnip::boost_tree(mode = "regression", </span></span>
-<span><span class="co">#&gt;             trees = parsnip::tune("trees"), tree_depth = parsnip::tune("tree_depth"), </span></span>
-<span><span class="co">#&gt;             learn_rate = 0.1) %&gt;% parsnip::set_engine("xgboost"), </span></span>
-<span><span class="co">#&gt;             grid = data.frame(trees = seq(from = 25, to = 500, </span></span>
-<span><span class="co">#&gt;                 by = 25), tree_depth = 3)))</span></span>
+<span><span class="co">#&gt;         prod_degree = 3) %&gt;% parsnip::set_engine("earth")), lm = list(model = parsnip::linear_reg() %&gt;% </span></span>
+<span><span class="co">#&gt;         parsnip::set_engine("lm")), gbt = list(model = parsnip::boost_tree(mode = "regression", </span></span>
+<span><span class="co">#&gt;         trees = parsnip::tune("trees"), tree_depth = parsnip::tune("tree_depth"), </span></span>
+<span><span class="co">#&gt;         learn_rate = 0.1) %&gt;% parsnip::set_engine("xgboost"), </span></span>
+<span><span class="co">#&gt;         grid = data.frame(trees = seq(from = 25, to = 500, by = 25), </span></span>
+<span><span class="co">#&gt;             tree_depth = 3)))</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x5618becb7230&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55e1b9b157d0&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:postcard&gt;</span></span></code></pre></div>
 </div>
 <div class="section level4">
@@ -460,8 +459,8 @@ is using the method <code><a href="../reference/prog.html">prog()</a></code>.</p
 <p>Inside this list element are elements</p>
 <ul>
 <li>
-<code>formula</code>: The formula used when fitting models in
-<code><a href="../reference/fit_best_learner.html">fit_best_learner()</a></code>
+<code>formula</code>: The formula used as <code>preproc</code> when
+fitting models in <code><a href="../reference/fit_best_learner.html">fit_best_learner()</a></code>
 </li>
 <li>
 <code>model_fit</code>: The result of
@@ -486,7 +485,7 @@ not take up too much space when printing in the vignette.</p>
 <span><span class="va">prog_info</span></span>
 <span><span class="co">#&gt; $formula</span></span>
 <span><span class="co">#&gt; Y ~ .</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x5618c3259410&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: 0x55e1bdf31228&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $model_fit</span></span>
 <span><span class="co">#&gt; ══ Workflow [trained] ══════════════════════════════════════════════════════════</span></span>

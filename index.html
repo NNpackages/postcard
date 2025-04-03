@@ -58,7 +58,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>postcard provides tools for accurately estimating marginal effects using plug-in estimation with GLMs, including increasing precision using prognostic covariate adjustment.</p>
+<p>postcard provides tools for accurately estimating marginal effects using plug-in estimation with GLMs, including increasing precision using prognostic covariate adjustment. See <a href="https://arxiv.org/abs/2503.22284" class="external-link">Powering RCTs for marginal effects with GLMs using prognostic score adjustment</a> by Højbjerre-Frandsen et. al (2025).</p>
 <div class="section level3">
 <h3 id="estimating-marginal-effects">Estimating marginal effects<a class="anchor" aria-label="anchor" href="#estimating-marginal-effects"></a>
 </h3>
@@ -69,7 +69,7 @@
 <h3 id="prognostic-covariate-adjustment">Prognostic covariate adjustment<a class="anchor" aria-label="anchor" href="#prognostic-covariate-adjustment"></a>
 </h3>
 <p><code><a href="reference/rctglm_with_prognosticscore.html">rctglm_with_prognosticscore()</a></code> is used to estimate marginal effects including the use of prognostic covariate adjustment. See introductory examples of its usage in <code><a href="articles/postcard.html">vignette("postcard")</a></code> and more details in <code><a href="articles/model-fit.html">vignette("model-fit")</a></code>.</p>
-<p><em>Prognostic covariate adjustment</em> involves training a <em>prognostic model</em> on historical data to predict the response in that data. Assuming that the historical data is representative of the comparator group in a <em>“new”</em> data set, we can use the prognostic model to predict the <em>comparator counterfactual outcome</em> for all observations (including the ones in the comparator group). This prediction, which is called the <strong>prognostic score</strong> is then used as an adjustment covariate in the GLM.</p>
+<p><em>Prognostic covariate adjustment</em> involves training a <em>prognostic model</em> on historical data to predict the response in that data. Assuming that the historical data is representative of the comparator group in a <em>“new”</em> data set, we can use the prognostic model to predict the <em>comparator counterfactual outcome</em> for all observations (including the ones in the comparator group). This prediction, which is called the <strong>prognostic score</strong>, is then used as an adjustment covariate in the GLM.</p>
 </div>
 <div class="section level2">
 <h2 id="power-approximation-for-linear-models">Power approximation for linear models<a class="anchor" aria-label="anchor" href="#power-approximation-for-linear-models"></a>
@@ -104,7 +104,7 @@
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Mathias Lerbech Jeppesen <br><small class="roles"> Author, maintainer </small>  </li>
-<li>Emilie Hojbjerre-Frandsen <br><small class="roles"> Author </small>  </li>
+<li>Emilie Hojbjerre-Frandsen <br><small class="roles"> Author, copyright holder </small>  </li>
 </ul>
 </div>
 

@@ -46,9 +46,9 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">fit_best_learner</span><span class="op">(</span></span>
 <span>  <span class="va">data</span>,</span>
-<span>  <span class="va">formula</span>,</span>
+<span>  <span class="va">preproc</span>,</span>
 <span>  cv_folds <span class="op">=</span> <span class="fl">5</span>,</span>
-<span>  learners <span class="op">=</span> <span class="fu">default_learners</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  learners <span class="op">=</span> <span class="fu"><a href="default_learners.html">default_learners</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="fu">options</span><span class="fu">::</span><span class="fu"><a href="https://dgkf.github.io/options/reference/opt.html" class="external-link">opt</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -58,16 +58,13 @@
 
 
 <dl><dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
-<dd><p>an optional data frame, list or environment (or object coercible
-by as.data.frame to a data frame) containing the variables in the model. If
-not found in data, the variables are taken from environment(formula), typically
-the environment from which the function is called.</p></dd>
+<dd><p>A data frame.</p></dd>
 
 
-<dt id="arg-formula">formula<a class="anchor" aria-label="anchor" href="#arg-formula"></a></dt>
-<dd><p>an object of class "formula" (or one that can be coerced to that class):
-a symbolic description of the model to be fitted. The details of model specification are
-given under ‘Details’ in the <a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a> documentation.</p></dd>
+<dt id="arg-preproc">preproc<a class="anchor" aria-label="anchor" href="#arg-preproc"></a></dt>
+<dd><p>A list (preferably named) with preprocessing objects:
+formulas, recipes, or <code><a href="https://workflows.tidymodels.org/reference/add_variables.html" class="external-link">workflows::workflow_variables()</a></code>. Passed to
+<code><a href="https://workflowsets.tidymodels.org/reference/workflow_set.html" class="external-link">workflowsets::workflow_set()</a></code>.</p></dd>
 
 
 <dt id="arg-cv-folds">cv_folds<a class="anchor" aria-label="anchor" href="#arg-cv-folds"></a></dt>
@@ -76,7 +73,11 @@ evaluating models</p></dd>
 
 
 <dt id="arg-learners">learners<a class="anchor" aria-label="anchor" href="#arg-learners"></a></dt>
-<dd><p>a <code>list</code> of <code>tidymodels</code></p></dd>
+<dd><p>a <code>list</code> (preferably named) containing named lists of elements
+<code>model</code> and optionally <code>grid</code>. The <code>model</code> element should be a <code>parsnip</code>
+model specification, which is passed to <a href="https://workflowsets.tidymodels.org/reference/workflow_set.html" class="external-link">workflowsets::workflow_set</a> as the
+<code>model</code> argument, while the <code>grid</code> element is passed as the <code>grid</code> argument
+of <a href="https://workflowsets.tidymodels.org/reference/option_add.html" class="external-link">workflowsets::option_add</a></p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
@@ -111,19 +112,19 @@ execution (Defaults to <code>2</code>, overwritable using option 'postcard.verbo
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Fit a learner to the historical control data with default learners</span></span></span>
-<span class="r-in"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">fit_best_learner</span><span class="op">(</span><span class="va">Y</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">dat_hist</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">fit_best_learner</span><span class="op">(</span>preproc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mod <span class="op">=</span> <span class="va">Y</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">dat_hist</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fitting learners</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • mod_mars</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • mod_lm</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • mod_gbt</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span>	<span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">1 of 3 resampling: mod_mars</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 3 resampling: mod_mars (182ms)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 3 resampling: mod_mars (204ms)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span>	<span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">2 of 3 resampling: mod_lm</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 3 resampling: mod_lm (92ms)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 3 resampling: mod_lm (98ms)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt (930ms)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt (978ms)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Model with lowest RMSE: mod_lm</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Use it fx. to predict the "control outcome" in the 2-armed RCT</span></span></span>
