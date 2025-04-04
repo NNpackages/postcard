@@ -28,7 +28,8 @@ reference:
     level. Functionalities are implemented here to utilise these formulas to approximate the power
     from a given sample size and assumed effect size together with other parameters.
   contents:
-  - powerss
+  - power_marginaleffect
+  - power_linear
 - title: Generate data from GLM model with known mean
   desc: >
     Used in development for examples, vignettes and tests, but exported to enable users to perform

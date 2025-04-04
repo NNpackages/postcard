@@ -140,7 +140,7 @@ test_that("`extract_train_test` returns list of train and test data", {
   )
 
   withr::local_seed(42)
-  folds <- rsample::vfold_cv(dat)
+  folds <- rsample::vfold_cv(dat, v = 2)
   single_fold <- folds$splits[[1]]
   list_of_train_test <- extract_train_test(single_fold)
   expect_type(list_of_train_test, "list")

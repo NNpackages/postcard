@@ -18,7 +18,7 @@ vignette: >
 library(postcard)
 ```
 
-The functions described in the help page `powerss()` provide utilities for prospective power calculations using linear models. In this vignette, we will conduct sample size calculations by constructing power curves using a **standard ANCOVA method** implemented in the package and compare this to using prognostic covariate adjustment.
+The functions described in the help page `power_linear()` provide utilities for prospective power calculations using linear models. In this vignette, we will conduct sample size calculations by constructing power curves using a **standard ANCOVA method** implemented in the package and compare this to using prognostic covariate adjustment.
 
 In usual cases of wanting to conduct sample size/power analyses prospectively, data of the new exposure is not available at the time of the analysis. What we can do is use historical data of the comparator group to estimate a variance and adjust this according to beliefs we might have about data from the novel group.
 

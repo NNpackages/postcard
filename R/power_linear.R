@@ -1,6 +1,6 @@
 #' Power and sample size estimation for linear models
 #'
-#' @name powerss
+#' @name power_linear
 #'
 #' @details
 #'
@@ -32,7 +32,7 @@
 #'
 NULL
 
-#' @rdname powerss
+#' @rdname power_linear
 #'
 #' @description
 #' `variance_ancova` provides a convenient function for estimating a
@@ -89,7 +89,7 @@ variance_ancova <- function(formula, data, inflation = 1, deflation = 1) {
   return(var_bound)
 }
 
-#' @rdname powerss
+#' @rdname power_linear
 #'
 #' @description
 #' The `power_gs` and `samplesize_gs` functions calculate the Guenther-Schouten
@@ -106,7 +106,8 @@ variance_ancova <- function(formula, data, inflation = 1, deflation = 1) {
 #' @param variance  a `numeric` variance to use for the approximation. See more details
 #' in documentation sections of each power approximating function.
 #' @param ate             a `numeric` minimum effect size that we should be able to detect.
-#' @param margin          a `numeric` superiority margin (for non-inferiority margin, a negative value can be provided).
+#' @param margin          a `numeric` superiority margin
+#' (for non-inferiority margin, a negative value can be provided).
 #' @param alpha           a `numeric` significance level. Due to regulatory guidelines when
 #' using a one-sided test, half the specified significance level is used.
 #' Thus, for standard significance level of 5%, the default is `alpha = 0.025`.
@@ -171,7 +172,7 @@ power_gs <- function(variance,
 }
 
 
-#' @rdname powerss
+#' @rdname power_linear
 #'
 #' @param power a `numeric` giving the desired power when calculating the sample size
 #'
@@ -189,7 +190,7 @@ samplesize_gs <- function(variance,
   return(samplesize)
 }
 
-#' @rdname powerss
+#' @rdname power_linear
 #'
 #' @description
 #' The function `power_nc` calculates the power for ANOVA or ANCOVA based on the
