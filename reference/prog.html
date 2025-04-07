@@ -27,6 +27,7 @@
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/NovoNordisk-OpenSource/postcard/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -36,7 +37,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Extract information about the fitted prognostic model</h1>
-
+      <small class="dont-index">Source: <a href="https://github.com/NovoNordisk-OpenSource/postcard/blob/main/R/rctglm_prog_methods.R" class="external-link"><code>R/rctglm_prog_methods.R</code></a></small>
       <div class="d-none name"><code>prog.Rd</code></div>
     </div>
 
@@ -64,7 +65,13 @@
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>description</p>
+    <p>a list with the structure described of <code>prognostic_info</code> in the
+<code>Value</code> section of <a href="rctglm_with_prognosticscore.html">rctglm_with_prognosticscore</a>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>The generic <code><a href="rctglm_with_prognosticscore.html">rctglm_with_prognosticscore()</a></code> for which this method
+works.</p></div>
     </div>
 
     <div class="section level2">
@@ -88,6 +95,16 @@
 <span class="r-in"><span>  W1 <span class="op">=</span> <span class="va">W1</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">learners</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  mars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    model <span class="op">=</span> <span class="fu">parsnip</span><span class="fu">::</span><span class="fu"><a href="https://parsnip.tidymodels.org/reference/set_engine.html" class="external-link">set_engine</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="fu">parsnip</span><span class="fu">::</span><span class="fu"><a href="https://parsnip.tidymodels.org/reference/mars.html" class="external-link">mars</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        mode <span class="op">=</span> <span class="st">"regression"</span>, prod_degree <span class="op">=</span> <span class="fl">3</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="st">"earth"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ate</span> <span class="op">&lt;-</span> <span class="fu"><a href="rctglm_with_prognosticscore.html">rctglm_with_prognosticscore</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  formula <span class="op">=</span> <span class="va">Y</span> <span class="op">~</span> <span class="va">.</span>,</span></span>
 <span class="r-in"><span>  exposure_indicator <span class="op">=</span> <span class="va">A</span>,</span></span>
@@ -95,23 +112,17 @@
 <span class="r-in"><span>  data <span class="op">=</span> <span class="va">dat_treat</span>,</span></span>
 <span class="r-in"><span>  family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">gaussian</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  estimand_fun <span class="op">=</span> <span class="st">"ate"</span>,</span></span>
-<span class="r-in"><span>  data_hist <span class="op">=</span> <span class="va">dat_notreat</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  data_hist <span class="op">=</span> <span class="va">dat_notreat</span>,</span></span>
+<span class="r-in"><span>  learners <span class="op">=</span> <span class="va">learners</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Fitting prognostic model</span> ──</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Created formula for fitting prognostic model as: Y ~ .</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Fitting learners</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • mod_mars</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • mod_lm</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> • mod_gbt</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span>	<span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">1 of 3 resampling: mod_mars</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 3 resampling: mod_mars (132ms)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span>	<span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">2 of 3 resampling: mod_lm</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 3 resampling: mod_lm (100ms)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt (927ms)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">1 of 1 resampling: mod_mars</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 1 resampling: mod_mars (116ms)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Model with lowest RMSE: mod_mars</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Investigate trained learners and fitted model in `prognostic_info` list element</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
@@ -127,7 +138,7 @@
 <span class="r-in"><span><span class="fu">prog</span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $formula</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Y ~ .</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55f4ae9d2020&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x5576fb8601d0&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $model_fit</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ══ Workflow [trained] ══════════════════════════════════════════════════════════</span>
@@ -154,50 +165,6 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computational engine: earth </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $learners$lm</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $learners$lm$model</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Linear Regression Model Specification (regression)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computational engine: lm </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $learners$gbt</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $learners$gbt$model</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Boosted Tree Model Specification (regression)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Main Arguments:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   trees = parsnip::tune("trees")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   tree_depth = parsnip::tune("tree_depth")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   learn_rate = 0.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computational engine: xgboost </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $learners$gbt$grid</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    trees tree_depth</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     25          3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     50          3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     75          3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    100          3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    125          3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    150          3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    175          3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    200          3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9    225          3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   250          3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11   275          3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12   300          3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13   325          3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14   350          3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15   375          3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16   400          3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17   425          3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18   450          3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19   475          3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20   500          3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -307,6 +274,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 99   1.966136555 -0.561635143</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 100  1.616736057  0.620070576</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

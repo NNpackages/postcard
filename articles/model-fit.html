@@ -44,6 +44,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/NovoNordisk-OpenSource/postcard/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -60,7 +61,7 @@
       <h1>Controlling behavior of model fitting functions</h1>
             
       
-
+      <small class="dont-index">Source: <a href="https://github.com/NovoNordisk-OpenSource/postcard/blob/main/vignettes/model-fit.Rmd" class="external-link"><code>vignettes/model-fit.Rmd</code></a></small>
       <div class="d-none name"><code>model-fit.Rmd</code></div>
     </div>
 
@@ -152,12 +153,12 @@ specifications of verbosity.</p>
 <span><span class="co">#&gt; • mod_gbt</span></span>
 <span><span class="co">#&gt; <span style="color: #0000BB;">i</span>  <span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span></span>
 <span><span class="co">#&gt; <span style="color: #0000BB;">i</span> <span style="color: #000000;">1 of 3 resampling: mod_mars</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 3 resampling: mod_mars (198ms)</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 3 resampling: mod_mars (185ms)</span></span></span>
 <span><span class="co">#&gt; <span style="color: #0000BB;">i</span>  <span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span></span>
 <span><span class="co">#&gt; <span style="color: #0000BB;">i</span> <span style="color: #000000;">2 of 3 resampling: mod_lm</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 3 resampling: mod_lm (102ms)</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 3 resampling: mod_lm (92ms)</span></span></span>
 <span><span class="co">#&gt; <span style="color: #0000BB;">i</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt (1.3s)</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt (1.2s)</span></span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Model with lowest RMSE: mod_mars</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Investigate trained learners and fitted model in `prognostic_info` list element</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -281,18 +282,18 @@ to use the estimand function <code>psi1 / psi0</code> as seen below:</p>
 <span><span class="co">#&gt; $f</span></span>
 <span><span class="co">#&gt; function (psi1, psi0) </span></span>
 <span><span class="co">#&gt; psi1/psi0</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x563690cae4c0&gt;</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x56369a216e68&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55ef2acbdcc0&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: 0x55ef34044ea0&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $d0</span></span>
 <span><span class="co">#&gt; function (psi1, psi0) </span></span>
 <span><span class="co">#&gt; -(psi1/psi0^2)</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x56369a216e68&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: 0x55ef34044ea0&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $d1</span></span>
 <span><span class="co">#&gt; function (psi1, psi0) </span></span>
 <span><span class="co">#&gt; 1/psi0</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x56369a216e68&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; &lt;environment: 0x55ef34044ea0&gt;</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="specifying-any-estimand">Specifying any estimand<a class="anchor" aria-label="anchor" href="#specifying-any-estimand"></a>
@@ -390,7 +391,7 @@ learners that are used in <code><a href="../reference/fit_best_learner.html">fit
 the <code>learners</code> argument.</p>
 </blockquote>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">postcard</span><span class="fu">:::</span><span class="va"><a href="../reference/default_learners.html">default_learners</a></span></span>
+<code class="sourceCode R"><span><span class="va">default_learners</span></span>
 <span><span class="co">#&gt; function () </span></span>
 <span><span class="co">#&gt; {</span></span>
 <span><span class="co">#&gt;     list(mars = list(model = parsnip::mars(mode = "regression", </span></span>
@@ -401,7 +402,7 @@ the <code>learners</code> argument.</p>
 <span><span class="co">#&gt;         grid = data.frame(trees = seq(from = 25, to = 500, by = 25), </span></span>
 <span><span class="co">#&gt;             tree_depth = 3)))</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; &lt;bytecode: 0x5636912a5930&gt;</span></span>
+<span><span class="co">#&gt; &lt;bytecode: 0x55ef2b1ec230&gt;</span></span>
 <span><span class="co">#&gt; &lt;environment: namespace:postcard&gt;</span></span></code></pre></div>
 </div>
 <div class="section level4">
@@ -485,7 +486,7 @@ not take up too much space when printing in the vignette.</p>
 <span><span class="va">prog_info</span></span>
 <span><span class="co">#&gt; $formula</span></span>
 <span><span class="co">#&gt; Y ~ .</span></span>
-<span><span class="co">#&gt; &lt;environment: 0x56369548f830&gt;</span></span>
+<span><span class="co">#&gt; &lt;environment: 0x55ef2f8bac58&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $model_fit</span></span>
 <span><span class="co">#&gt; ══ Workflow [trained] ══════════════════════════════════════════════════════════</span></span>

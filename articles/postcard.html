@@ -44,6 +44,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/NovoNordisk-OpenSource/postcard/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -60,7 +61,7 @@
       <h1>Introduction to postcard</h1>
             
       
-
+      <small class="dont-index">Source: <a href="https://github.com/NovoNordisk-OpenSource/postcard/blob/main/vignettes/postcard.Rmd" class="external-link"><code>vignettes/postcard.Rmd</code></a></small>
       <div class="d-none name"><code>postcard.Rmd</code></div>
     </div>
 
@@ -265,16 +266,22 @@ approximation formulas to perform such analyses.</p>
 <p>See a more detailed walkthrough of a use case in
 <code><a href="../articles/prospective-power.html">vignette("prospective-power")</a></code>.</p>
 <div class="section level3">
-<h3 id="method-robust-to-model-misspecification">Method robust to model misspecification<a class="anchor" aria-label="anchor" href="#method-robust-to-model-misspecification"></a>
+<h3 id="for-marginal-effects">For marginal effects<a class="anchor" aria-label="anchor" href="#for-marginal-effects"></a>
 </h3>
 <p>The method proposed in <a href="https://arxiv.org/abs/2503.22284" class="external-link">Powering RCTs for marginal
 effects with GLMs using prognostic score adjustment</a> by
 Højbjerre-Frandsen et. al (2025), which can be used to estimate the
 power when estimating any marginal effect, is implemented in the
 function <code><a href="../reference/power_marginaleffect.html">power_marginaleffect()</a></code>.</p>
+<p>According to the conservative approach in the article, if wanting to
+conduct power analyses to figure out how many participants is needed for
+an upcoming trial, where you are planning to use <em>prognostic
+covariate adjustment</em>, predictions should be obtained from a
+discrete super learner identical to the one planned to use for
+generating prognostic scores when adjusting in the analysis when
+estimating the marginal effect.</p>
 <blockquote>
-<p>Note that predictions can be obtained in any way the user sees fit.
-Here we showcase a simple use of a <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code>, but fx.
+<p>Here we showcase a simple use of a <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code>, but fx.
 <code><a href="../reference/fit_best_learner.html">fit_best_learner()</a></code> could be used to fit a discrete super
 learner as the prediction model. Could also add steps to get
 out-of-sample (OOS) predictions (see examples).</p>
@@ -292,7 +299,7 @@ out-of-sample (OOS) predictions (see examples).</p>
 <span><span class="co">#&gt; [1] 0.9056303</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="methods-specific-to-linear-models">Methods specific to linear models<a class="anchor" aria-label="anchor" href="#methods-specific-to-linear-models"></a>
+<h3 id="specific-to-linear-models">Specific to linear models<a class="anchor" aria-label="anchor" href="#specific-to-linear-models"></a>
 </h3>
 <div class="section level4">
 <h4 id="estimating-the-assumed-variance">Estimating the assumed variance<a class="anchor" aria-label="anchor" href="#estimating-the-assumed-variance"></a>

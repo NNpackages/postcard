@@ -3,11 +3,11 @@
 estimand in the setting of a randomised clinical trial, even in the case of heterogeneous effect of
 covariates in randomisation groups. See
 Powering RCTs for marginal effects with GLMs using prognostic score adjustment
-by Højbjerre-Frandsen et. al (2025) for more details."><meta property="og:description" content="The procedure uses plug-in-estimation and influence functions to perform robust inference of any specified
+by Højbjerre-Frandsen et. al (2025) for more details on methodology."><meta property="og:description" content="The procedure uses plug-in-estimation and influence functions to perform robust inference of any specified
 estimand in the setting of a randomised clinical trial, even in the case of heterogeneous effect of
 covariates in randomisation groups. See
 Powering RCTs for marginal effects with GLMs using prognostic score adjustment
-by Højbjerre-Frandsen et. al (2025) for more details."></head><body>
+by Højbjerre-Frandsen et. al (2025) for more details on methodology."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -33,6 +33,7 @@ by Højbjerre-Frandsen et. al (2025) for more details."></head><body>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/NovoNordisk-OpenSource/postcard/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -42,7 +43,7 @@ by Højbjerre-Frandsen et. al (2025) for more details."></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Fit GLM and find any estimand (marginal effect) using plug-in estimation with variance estimation using influence functions</h1>
-
+      <small class="dont-index">Source: <a href="https://github.com/NovoNordisk-OpenSource/postcard/blob/main/R/rctglm.R" class="external-link"><code>R/rctglm.R</code></a></small>
       <div class="d-none name"><code>rctglm.Rd</code></div>
     </div>
 
@@ -51,7 +52,7 @@ by Højbjerre-Frandsen et. al (2025) for more details."></head><body>
 estimand in the setting of a randomised clinical trial, even in the case of heterogeneous effect of
 covariates in randomisation groups. See
 <a href="https://arxiv.org/abs/2503.22284" class="external-link">Powering RCTs for marginal effects with GLMs using prognostic score adjustment</a>
-by Højbjerre-Frandsen et. al (2025) for more details.</p>
+by Højbjerre-Frandsen et. al (2025) for more details on methodology.</p>
     </div>
 
     <div class="section level2">
@@ -161,8 +162,7 @@ values, obtained by transforming the linear predictors for each group
 by the inverse of the link function.</p></li>
 <li><p><code>glm</code>: A <code>glm</code> object returned from running <a href="https://rdrr.io/r/stats/glm.html" class="external-link">stats::glm</a> within the procedure</p></li>
 <li><p><code>call</code>: The matched <code>call</code></p></li>
-</ul><p>See how to extract information using methods in <a href="rctglm_methods.html">rctglm_methods</a>.</p>
-    </div>
+</ul></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The procedure assumes the setup of a randomised clinical trial with observations grouped by a binary
@@ -189,6 +189,12 @@ a fitted GLM in the binary groups defined by <code>exposure_indicator</code>.</p
 in <code><a href="../articles/model-fit.html">vignette("model-fit")</a></code>.</p>
 <p>As a default, the <code>Deriv</code> package is used to perform symbolic differentiation to find the derivatives of
 the <code>estimand_fun</code>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>See how to extract information using methods in <a href="rctglm_methods.html">rctglm_methods</a>.</p>
+<p>Use <code><a href="rctglm_with_prognosticscore.html">rctglm_with_prognosticscore()</a></code> to include prognostic covariate adjustment.</p>
+<p>See vignettes</p></div>
     </div>
 
     <div class="section level2">
@@ -265,7 +271,6 @@ the <code>estimand_fun</code>.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Symbolically deriving partial derivative of the function '(psi1 * (1 - psi0))/(psi0 * (1 - psi1))' with respect to 'psi1' as: '{     .e2 &lt;- psi0 * (1 - psi1)     (1 - psi0) * (1/.e2 + psi0 * psi1/.e2^2) }'.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • Alternatively, specify the derivative through the argument</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `estimand_fun_deriv1`</span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
