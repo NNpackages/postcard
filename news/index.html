@@ -45,6 +45,14 @@
 <code>rctglm</code>: Finding any marginal effect estimand and estimating the standard error using influence functions to avoid inflation of type 1 error</li>
 <li>
 <code>rctglm_with_prognosticscore</code>: Do the above, but leveraging historical data to increase precision with prognostic scores.</li>
+</ul><p>Additionally, the package includes functionalities for</p>
+<ul><li>fitting a discrete super learner in <code>fit_best_learner</code>, which is leveraged in <code>rctglm_with_prognosticscore</code>
+</li>
+<li>approximating power using
+<ul><li>standard methods for ANCOVA models (see help topic <code>power_linear</code>)</li>
+<li>a novel method for any model estimating marginal effects (<code>power_marginaleffect</code>)</li>
+</ul></li>
+<li>generating data from a GLM (<code>glm_data</code>)</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.1" id="postcard-021">postcard 0.2.1<a class="anchor" aria-label="anchor" href="#postcard-021"></a></h2>
