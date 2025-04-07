@@ -93,9 +93,8 @@ make the "orientation" of the <code>estimand_fun</code> clear.</p></dd>
 
 
 <dt id="arg-exposure-prob">exposure_prob<a class="anchor" aria-label="anchor" href="#arg-exposure-prob"></a></dt>
-<dd><p>a <code>numeric</code> with the probabiliy of being in
-"group 1" (rather than group 0) in groups defined by <code>exposure_indicator</code>.
-As a default, the ratio of 1's in data is used.</p></dd>
+<dd><p>a <code>numeric</code> with the probability of being in
+"group 1" (rather than group 0) in groups defined by <code>exposure_indicator</code>.</p></dd>
 
 
 <dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
@@ -249,13 +248,13 @@ before calling <a href="rctglm.html">rctglm</a> with the modified formula).</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • mod_gbt</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span>	<span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">1 of 3 resampling: mod_mars</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 3 resampling: mod_mars (122ms)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 3 resampling: mod_mars (136ms)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span>	<span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">2 of 3 resampling: mod_lm</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 3 resampling: mod_lm (92ms)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 3 resampling: mod_lm (100ms)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt (921ms)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Model with lowest RMSE: mod_gbt</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt (963ms)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Model with lowest RMSE: mod_mars</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Investigate trained learners and fitted model in `prognostic_info` list element</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Symbolic differentiation of estimand function</span> ──</span>
@@ -270,7 +269,7 @@ before calling <a href="rctglm.html">rctglm</a> with the modified formula).</p>
 <span class="r-in"><span><span class="co"># Pull information on estimand</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="rctglm_methods.html">estimand</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Estimate Std. Error</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2.195769   0.204792</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2.043516  0.1911481</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

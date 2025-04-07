@@ -45,8 +45,8 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">fit_best_learner</span><span class="op">(</span></span>
-<span>  <span class="va">data</span>,</span>
 <span>  <span class="va">preproc</span>,</span>
+<span>  <span class="va">data</span>,</span>
 <span>  cv_folds <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>  learners <span class="op">=</span> <span class="fu"><a href="default_learners.html">default_learners</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="fu">options</span><span class="fu">::</span><span class="fu"><a href="https://dgkf.github.io/options/reference/opt.html" class="external-link">opt</a></span><span class="op">(</span><span class="st">"verbose"</span><span class="op">)</span></span>
@@ -57,14 +57,14 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
-<dd><p>A data frame.</p></dd>
-
-
-<dt id="arg-preproc">preproc<a class="anchor" aria-label="anchor" href="#arg-preproc"></a></dt>
+<dl><dt id="arg-preproc">preproc<a class="anchor" aria-label="anchor" href="#arg-preproc"></a></dt>
 <dd><p>A list (preferably named) with preprocessing objects:
 formulas, recipes, or <code><a href="https://workflows.tidymodels.org/reference/add_variables.html" class="external-link">workflows::workflow_variables()</a></code>. Passed to
 <code><a href="https://workflowsets.tidymodels.org/reference/workflow_set.html" class="external-link">workflowsets::workflow_set()</a></code>.</p></dd>
+
+
+<dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
+<dd><p>A data frame.</p></dd>
 
 
 <dt id="arg-cv-folds">cv_folds<a class="anchor" aria-label="anchor" href="#arg-cv-folds"></a></dt>
@@ -119,12 +119,12 @@ execution (Defaults to <code>2</code>, overwritable using option 'postcard.verbo
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • mod_gbt</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span>	<span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">1 of 3 resampling: mod_mars</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 3 resampling: mod_mars (180ms)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 3 resampling: mod_mars (215ms)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span>	<span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">2 of 3 resampling: mod_lm</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 3 resampling: mod_lm (94ms)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 3 resampling: mod_lm (106ms)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt (944ms)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">3 of 3 tuning:     mod_gbt (983ms)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Model with lowest RMSE: mod_lm</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Use it fx. to predict the "control outcome" in the 2-armed RCT</span></span></span>

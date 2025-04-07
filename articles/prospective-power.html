@@ -68,7 +68,7 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://nnpackages.github.io/postcard/">postcard</a></span><span class="op">)</span></span></code></pre></div>
-<p>The functions described in the help page <code><a href="../reference/powerss.html">powerss()</a></code>
+<p>The functions described in the help page <code><a href="../reference/power_linear.html">power_linear()</a></code>
 provide utilities for prospective power calculations using linear
 models. In this vignette, we will conduct sample size calculations by
 constructing power curves using a <strong>standard ANCOVA
@@ -86,7 +86,7 @@ might have about data from the novel group.</p>
 prospective power analysis. To showcase a common use case, we here
 simulate historical data, which we use to estimate the variance of the
 response adjusted by the coefficient of determination with the function
-<code><a href="../reference/powerss.html">variance_ancova()</a></code>.</p>
+<code><a href="../reference/power_linear.html">variance_ancova()</a></code>.</p>
 <blockquote>
 <p>To compare power curves between a “standard” ANCOVA model and one
 using prognostic covariate adjustment, we simulate historical data, so
@@ -145,8 +145,8 @@ and in case of an ANCOVA utilising <strong>prognostic covariate
 adjustment</strong> by adjusting for the prognostic score as a
 covariate.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">var_bound_ancova</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/powerss.html">variance_ancova</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">~</span> <span class="va">X1</span> <span class="op">+</span> <span class="va">X2</span> <span class="op">+</span> <span class="va">X3</span>, data <span class="op">=</span> <span class="va">data_test</span><span class="op">)</span></span>
-<span><span class="va">var_bound_prog</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/powerss.html">variance_ancova</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">~</span> <span class="va">X1</span> <span class="op">+</span> <span class="va">X2</span> <span class="op">+</span> <span class="va">X3</span> <span class="op">+</span> <span class="va">.pred</span>, data <span class="op">=</span> <span class="va">data_test</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">var_bound_ancova</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/power_linear.html">variance_ancova</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">~</span> <span class="va">X1</span> <span class="op">+</span> <span class="va">X2</span> <span class="op">+</span> <span class="va">X3</span>, data <span class="op">=</span> <span class="va">data_test</span><span class="op">)</span></span>
+<span><span class="va">var_bound_prog</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/power_linear.html">variance_ancova</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">~</span> <span class="va">X1</span> <span class="op">+</span> <span class="va">X2</span> <span class="op">+</span> <span class="va">X3</span> <span class="op">+</span> <span class="va">.pred</span>, data <span class="op">=</span> <span class="va">data_test</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="creating-a-plot-of-power-curves">Creating a plot of power curves<a class="anchor" aria-label="anchor" href="#creating-a-plot-of-power-curves"></a>
@@ -156,8 +156,8 @@ total sample size, we iterate the <code>power_gs</code> function for a
 number of different sample sizes and save the results using both the
 estimated variance with and without prognostic covariate adjustment.</p>
 <blockquote>
-<p>Note we here just use the <code><a href="../reference/powerss.html">power_gs()</a></code> function, but
-<code><a href="../reference/powerss.html">power_nc()</a></code> is also available and works exactly the same
+<p>Note we here just use the <code><a href="../reference/power_linear.html">power_gs()</a></code> function, but
+<code><a href="../reference/power_linear.html">power_nc()</a></code> is also available and works exactly the same
 except it needs an additional mandatory argument <code>df</code> with
 degrees of freedom for the t-distribution.</p>
 </blockquote>
@@ -167,7 +167,7 @@ degrees of freedom for the t-distribution.</p>
 <span><span class="va">n_to</span> <span class="op">&lt;-</span> <span class="fl">250</span></span>
 <span></span>
 <span><span class="va">iterate_power</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">variance</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">power_ancova</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">n_from</span><span class="op">:</span><span class="va">n_to</span>, FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="fu"><a href="../reference/powerss.html">power_gs</a></span><span class="op">(</span></span>
+<span>  <span class="va">power_ancova</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">n_from</span><span class="op">:</span><span class="va">n_to</span>, FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="fu"><a href="../reference/power_linear.html">power_gs</a></span><span class="op">(</span></span>
 <span>    n <span class="op">=</span> <span class="va">n</span>,</span>
 <span>    variance <span class="op">=</span> <span class="va">variance</span>,</span>
 <span>    r <span class="op">=</span> <span class="fl">1</span>, ate <span class="op">=</span> <span class="fl">.8</span>, margin <span class="op">=</span> <span class="fl">0</span></span>
@@ -179,7 +179,7 @@ degrees of freedom for the t-distribution.</p>
 <span><span class="va">data_power</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span></span>
 <span>  <span class="fu">iterate_power</span><span class="op">(</span><span class="va">var_bound_ancova</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
-<span>      n_desired <span class="op">=</span> <span class="fu"><a href="../reference/powerss.html">samplesize_gs</a></span><span class="op">(</span></span>
+<span>      n_desired <span class="op">=</span> <span class="fu"><a href="../reference/power_linear.html">samplesize_gs</a></span><span class="op">(</span></span>
 <span>        variance <span class="op">=</span> <span class="va">var_bound_ancova</span>,</span>
 <span>        power <span class="op">=</span> <span class="va">desired_power</span>,</span>
 <span>        r <span class="op">=</span> <span class="fl">1</span>, ate <span class="op">=</span> <span class="fl">.8</span>, margin <span class="op">=</span> <span class="fl">0</span></span>
@@ -189,7 +189,7 @@ degrees of freedom for the t-distribution.</p>
 <span>    <span class="op">)</span>,</span>
 <span>  <span class="fu">iterate_power</span><span class="op">(</span><span class="va">var_bound_prog</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
-<span>      n_desired <span class="op">=</span> <span class="fu"><a href="../reference/powerss.html">samplesize_gs</a></span><span class="op">(</span></span>
+<span>      n_desired <span class="op">=</span> <span class="fu"><a href="../reference/power_linear.html">samplesize_gs</a></span><span class="op">(</span></span>
 <span>        variance <span class="op">=</span> <span class="va">var_bound_prog</span>,</span>
 <span>        power <span class="op">=</span> <span class="va">desired_power</span>,</span>
 <span>        r <span class="op">=</span> <span class="fl">1</span>, ate <span class="op">=</span> <span class="fl">.8</span>, margin <span class="op">=</span> <span class="fl">0</span></span>
@@ -203,7 +203,7 @@ horizontal line and create vertical lines with labels that show the
 sample size needed to obtain 90% power with each model.</p>
 <blockquote>
 <p>Note if we were just interested in finding the sample size needed for
-90% power, simply running <code><a href="../reference/powerss.html">samplesize_gs()</a></code> as we do below
+90% power, simply running <code><a href="../reference/power_linear.html">samplesize_gs()</a></code> as we do below
 would be enough.</p>
 </blockquote>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">

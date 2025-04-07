@@ -256,33 +256,61 @@ be used to extract. A breakdown of what this list includes, see the
 </div>
 </div>
 <div class="section level2">
-<h2 id="power-approximation-in-linear-models">Power approximation in linear models<a class="anchor" aria-label="anchor" href="#power-approximation-in-linear-models"></a>
+<h2 id="power-approximation">Power approximation<a class="anchor" aria-label="anchor" href="#power-approximation"></a>
 </h2>
 <p>In cases of seeking to conduct new studies, sample size/power
 analyses are vital to the successful planning of such studies. Here, we
 present implementations in this package that take advantage of power
 approximation formulas to perform such analyses.</p>
 <p>See a more detailed walkthrough of a use case in
-<code><a href="../articles/prospective-power.html">vignette("prospective-power")</a></code>, where power curves are drawn
-and compared for a standard ANCOVA model and one utilising
-<em>prognostic covariate adjustment</em>.</p>
+<code><a href="../articles/prospective-power.html">vignette("prospective-power")</a></code>.</p>
 <div class="section level3">
-<h3 id="estimating-the-assumed-variance">Estimating the assumed variance<a class="anchor" aria-label="anchor" href="#estimating-the-assumed-variance"></a>
+<h3 id="method-robust-to-model-misspecification">Method robust to model misspecification<a class="anchor" aria-label="anchor" href="#method-robust-to-model-misspecification"></a>
 </h3>
+<p>The method proposed in <a href="https://arxiv.org/abs/2503.22284" class="external-link">Powering RCTs for marginal
+effects with GLMs using prognostic score adjustment</a> by
+Højbjerre-Frandsen et. al (2025), which can be used to estimate the
+power when estimating any marginal effect, is implemented in the
+function <code><a href="../reference/power_marginaleffect.html">power_marginaleffect()</a></code>.</p>
+<blockquote>
+<p>Note that predictions can be obtained in any way the user sees fit.
+Here we showcase a simple use of a <code><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm()</a></code>, but fx.
+<code><a href="../reference/fit_best_learner.html">fit_best_learner()</a></code> could be used to fit a discrete super
+learner as the prediction model. Could also add steps to get
+out-of-sample (OOS) predictions (see examples).</p>
+</blockquote>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pred_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">~</span> <span class="va">W</span> <span class="op">+</span> <span class="va">A</span>, data <span class="op">=</span> <span class="va">dat_treat</span><span class="op">)</span></span>
+<span><span class="va">preds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">pred_mod</span>, <span class="va">dat_treat</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/power_marginaleffect.html">power_marginaleffect</a></span><span class="op">(</span></span>
+<span>  response <span class="op">=</span> <span class="va">dat_treat</span><span class="op">$</span><span class="va">Y</span>,</span>
+<span>  predictions <span class="op">=</span> <span class="va">preds</span>,</span>
+<span>  target_effect <span class="op">=</span> <span class="fl">0.4</span>,</span>
+<span>  exposure_prob <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.9056303</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="methods-specific-to-linear-models">Methods specific to linear models<a class="anchor" aria-label="anchor" href="#methods-specific-to-linear-models"></a>
+</h3>
+<div class="section level4">
+<h4 id="estimating-the-assumed-variance">Estimating the assumed variance<a class="anchor" aria-label="anchor" href="#estimating-the-assumed-variance"></a>
+</h4>
 <p>Finding the assumed variance to use for your power analysis with an
 ANCOVA model can be done using the <code>variance_ancova</code>
 function, which estimates the term
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi><mn>2</mn></msup><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><msup><mi>R</mi><mn>2</mn></msup><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\sigma^2(1-R^2)</annotation></semantics></math>
 given a <code>formula</code> and <code>data</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">vanc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/powerss.html">variance_ancova</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">~</span> <span class="va">A</span> <span class="op">+</span> <span class="va">W</span>, data <span class="op">=</span> <span class="va">dat_treat</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">vanc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/power_linear.html">variance_ancova</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">~</span> <span class="va">A</span> <span class="op">+</span> <span class="va">W</span>, data <span class="op">=</span> <span class="va">dat_treat</span><span class="op">)</span></span>
 <span><span class="va">vanc</span></span>
 <span><span class="co">#&gt; [1] 2.120278</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="finding-the-power-or-sample-size">Finding the power (or sample size)<a class="anchor" aria-label="anchor" href="#finding-the-power-or-sample-size"></a>
-</h3>
-<p>Functions <code><a href="../reference/powerss.html">power_gs()</a></code> and <code><a href="../reference/powerss.html">power_nc()</a></code> exist,
+<div class="section level4">
+<h4 id="finding-the-power-or-sample-size">Finding the power (or sample size)<a class="anchor" aria-label="anchor" href="#finding-the-power-or-sample-size"></a>
+</h4>
+<p>Functions <code><a href="../reference/power_linear.html">power_gs()</a></code> and <code><a href="../reference/power_linear.html">power_nc()</a></code> exist,
 which estimate the power given a sample size <code>n</code> using
 approximation formulas. The functions are the results of two different
 approximation formulas but behave exactly the same except for a
@@ -295,14 +323,15 @@ the t-distribution used.</p>
 <p>For the Guenther-Schouten approximation, the formula directly gives
 us a sample size as a function of the power, so getting the required
 sample size as a function of the power is available in the function
-<code><a href="../reference/powerss.html">samplesize_gs()</a></code>.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/powerss.html">power_gs</a></span><span class="op">(</span>variance <span class="op">=</span> <span class="va">vanc</span>, n <span class="op">=</span> <span class="fl">100</span>, ate <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span>
+<code><a href="../reference/power_linear.html">samplesize_gs()</a></code>.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/power_linear.html">power_gs</a></span><span class="op">(</span>variance <span class="op">=</span> <span class="va">vanc</span>, n <span class="op">=</span> <span class="fl">100</span>, ate <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.7765394</span></span>
-<span><span class="fu"><a href="../reference/powerss.html">power_nc</a></span><span class="op">(</span>variance <span class="op">=</span> <span class="va">vanc</span>, n <span class="op">=</span> <span class="fl">100</span>, df <span class="op">=</span> <span class="fl">97</span>, ate <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/power_linear.html">power_nc</a></span><span class="op">(</span>variance <span class="op">=</span> <span class="va">vanc</span>, n <span class="op">=</span> <span class="fl">100</span>, df <span class="op">=</span> <span class="fl">97</span>, ate <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.7763057</span></span>
-<span><span class="fu"><a href="../reference/powerss.html">samplesize_gs</a></span><span class="op">(</span>variance <span class="op">=</span> <span class="va">vanc</span>, ate <span class="op">=</span> <span class="fl">0.8</span>, power <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/power_linear.html">samplesize_gs</a></span><span class="op">(</span>variance <span class="op">=</span> <span class="va">vanc</span>, ate <span class="op">=</span> <span class="fl">0.8</span>, power <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 141.1623</span></span></code></pre></div>
+</div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -126,16 +126,16 @@ information from the underlying <code>glm</code> fit in the procedure.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call:  rctglm(formula = Y ~ ., exposure_indicator = A, exposure_prob = exposure_prob, </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     data = dat_binom, family = binomial, estimand_fun = "ate")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Counterfactual control mean (psi_0=E[Y|X, A=0]) estimate: 0.6762</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Counterfactual control mean (psi_1=E[Y|X, A=1]) estimate: 0.9097</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Counterfactual control mean (psi_0=E[Y|X, A=0]) estimate: 0.7789</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Counterfactual control mean (psi_1=E[Y|X, A=1]) estimate: 0.8888</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimand function r: psi1 - psi0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Estimand (r(psi_1, psi_0)) estimate (SE): 0.2335 (0.076)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimand (r(psi_1, psi_0)) estimate (SE): 0.1099 (0.06788)</span>
 <span class="r-in"><span><span class="fu">estimand</span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Estimate Std. Error</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.2334771 0.07600023</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.1098769 0.06788006</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">ate</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)          X1           A </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.8528778   1.0275222   1.7464931 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   1.3909470   1.0711635   0.9680493 </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

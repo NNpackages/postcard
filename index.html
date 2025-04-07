@@ -72,9 +72,20 @@
 <p><em>Prognostic covariate adjustment</em> involves training a <em>prognostic model</em> on historical data to predict the response in that data. Assuming that the historical data is representative of the comparator group in a <em>“new”</em> data set, we can use the prognostic model to predict the <em>comparator counterfactual outcome</em> for all observations (including the ones in the comparator group). This prediction, which is called the <strong>prognostic score</strong>, is then used as an adjustment covariate in the GLM.</p>
 </div>
 <div class="section level2">
-<h2 id="power-approximation-for-linear-models">Power approximation for linear models<a class="anchor" aria-label="anchor" href="#power-approximation-for-linear-models"></a>
+<h2 id="power-approximation">Power approximation<a class="anchor" aria-label="anchor" href="#power-approximation"></a>
 </h2>
-<p>Additionally, implementations of sample size/power approximation formulas are available, enabling retrospective power analyses to be performed using the package. Functionalities are available at the help page <code><a href="reference/powerss.html">powerss()</a></code>, introductory examples in <code><a href="articles/postcard.html">vignette("postcard")</a></code> and more details in <code><a href="articles/prospective-power.html">vignette("prospective-power")</a></code>.</p>
+<p>Implementations of sample size/power approximation formulas are available, enabling retrospective power analyses to be performed using the package.</p>
+<p>Introductory examples are available in <code><a href="articles/postcard.html">vignette("postcard")</a></code> and more details in <code><a href="articles/prospective-power.html">vignette("prospective-power")</a></code>.</p>
+<div class="section level3">
+<h3 id="when-estimating-marginal-effects-using-any-model">When estimating marginal effects using any model<a class="anchor" aria-label="anchor" href="#when-estimating-marginal-effects-using-any-model"></a>
+</h3>
+<p>A method of estimating power in any case of estimating marginal effects is described in the reference at the top of this page, and the algorithm is implemented in the function <code>power_marginaleffect</code>.</p>
+</div>
+<div class="section level3">
+<h3 id="specifically-for-linear-models">Specifically for linear models<a class="anchor" aria-label="anchor" href="#specifically-for-linear-models"></a>
+</h3>
+<p>Functionalities available to estimate the power for linear models include functions <code>variance_ancova</code>, <code>power_gs</code>, <code>samplesize_gs</code>, <code>power_nc</code>.</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
