@@ -136,7 +136,7 @@ If left as <code>NULL</code>, the inverse will be found automatically</p></dd>
 <dt id="arg-margin">margin<a class="anchor" aria-label="anchor" href="#arg-margin"></a></dt>
 <dd><p>a <code>numeric</code> superiority margin. As a default, the <code>estimand_fun</code>
 is evaluated with the same counterfactual means <code>psi1</code> and <code>psi0</code>, corresponding
-to a superiority margin assumin no difference (fx. 0 for ATE and 1 for rate ratio).</p></dd>
+to a superiority margin assuming no difference (fx. 0 for ATE and 1 for rate ratio).</p></dd>
 
 
 <dt id="arg-alpha">alpha<a class="anchor" aria-label="anchor" href="#arg-alpha"></a></dt>
@@ -177,7 +177,7 @@ r_1'^{\, 2}\sigma_1^2+
 $$</p>
 <p>where \(r_a'\) is the derivative of the <code>estimand_fun</code> with respect to
 \(\Psi_a\), \(\sigma_a^2\) is the variance of the potential outcome corresponding to
-group \(a\), \(\pi_a\) is the probablity of being assigned to group \(a\),
+group \(a\), \(\pi_a\) is the probability of being assigned to group \(a\),
 and \(\kappa_a\) is the expected mean-squared error when predicting the
 potential outcome corresponding to group \(a\).</p>
 <p>The variance bound is then used for calculating a lower bound of the power using
@@ -281,10 +281,10 @@ relevant.</p></li>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • mod_lm</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span>	<span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">1 of 2 resampling: mod_mars</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 2 resampling: mod_mars (123ms)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 2 resampling: mod_mars (169ms)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span>	<span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">2 of 2 resampling: mod_lm</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 2 resampling: mod_lm (91ms)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 2 resampling: mod_lm (97ms)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Model with lowest RMSE: mod_mars</span>
 <span class="r-in"><span><span class="va">lrnr2</span> <span class="op">&lt;-</span> <span class="fu"><a href="fit_best_learner.html">fit_best_learner</a></span><span class="op">(</span>preproc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mod <span class="op">=</span> <span class="va">Y</span> <span class="op">~</span> <span class="va">X1</span> <span class="op">+</span> <span class="va">X2</span> <span class="op">+</span> <span class="va">A</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                          data <span class="op">=</span> <span class="va">gaus2</span>,</span></span>
@@ -294,10 +294,10 @@ relevant.</p></li>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> • mod_lm</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span>	<span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">1 of 2 resampling: mod_mars</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 2 resampling: mod_mars (123ms)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">1 of 2 resampling: mod_mars (135ms)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span>	<span style="color: #000000;">No tuning parameters. `fit_resamples()` will be attempted</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">i</span> <span style="color: #000000;">2 of 2 resampling: mod_lm</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 2 resampling: mod_lm (92ms)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #000000;">2 of 2 resampling: mod_lm (97ms)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Model with lowest RMSE: mod_lm</span>
 <span class="r-in"><span><span class="va">preds_lrnr1</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">lrnr2</span>, new_data <span class="op">=</span> <span class="va">gaus1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">preds_lrnr2</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">lrnr1</span>, new_data <span class="op">=</span> <span class="va">gaus2</span><span class="op">)</span><span class="op">)</span></span></span>
